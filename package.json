@@ -1,0 +1,9 @@
+{
+  "name": "quantum",
+  "version": "1.0.0",
+  "description": "Experiments with LLMs",
+  "main": "index.js",
+  "repository": "https://github.com/artsy/quantum",
+  "license": "UNLICENSED",
+  "private": true
+}
