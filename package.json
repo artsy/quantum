@@ -7,8 +7,12 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
     "prettier": "3.2.5",
     "tsx": "^4.7.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.6.0"
   }
 }
