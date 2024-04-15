@@ -6,10 +6,10 @@
  *
  * Usage examples:
  *
- * bun run src/01-function-calling/index.ts "who is popular on artsy right now?" | jq
- * bun run src/01-function-calling/index.ts "who is artsy into these days?" | jq
- * bun run src/01-function-calling/index.ts "who is new on artsy?" | jq
- * bun run src/01-function-calling/index.ts "give me the last 17 artists on artsy, alphabetically" | jq
+ * yarn tsx src/01-function-calling/index.ts "who is popular on artsy right now?" | jq
+ * yarn tsx src/01-function-calling/index.ts "who is artsy into these days?" | jq
+ * yarn tsx src/01-function-calling/index.ts "who is new on artsy?" | jq
+ * yarn tsx src/01-function-calling/index.ts "give me the last 17 artists on artsy, alphabetically" | jq
  */
 
 import dotenv from "dotenv"
