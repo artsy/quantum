@@ -1,0 +1,6 @@
+{
+  "*.ts": [
+    "prettier --no-error-on-unmatched-pattern --list-different",
+    "eslint"
+  ]
+}
