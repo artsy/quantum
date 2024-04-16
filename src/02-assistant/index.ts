@@ -1,8 +1,30 @@
+/*
+ * This example demonstrates how to use the OpenAI API to create and/or use an assistant that uses functions calls.
+ *
+ * The assistant will listen to the user's input, and if it requires a tool, it will call a function to get the data from Artsy's API.
+ *
+ * Usage examples:
+ *
+ * NOTE: special symbols like $, #, and others may need to be escaped with a backslash (\) in the terminal.
+ *
+ * yarn tsx src/02-assistant/index.ts "I want to purchase art with a budget of 5,000. I am especially interested in photography. Please provide some recommendations."
+ * yarn tsx src/02-assistant/index.ts "I want to purchase art with a budge of 100,000. Make some recomendations base on whats popular."
+ * yarn tsx src/02-assistant/index.ts "I want to purchase art with a budget of 1,000,000. I like abstract art."
+ */
+
 import dotenv from "dotenv"
 import OpenAI from "openai"
 
 dotenv.config()
 const openai = new OpenAI() // uses `OPENAI_API_KEY` from .env
+
+/*
+ * Get user input
+ */
+
+const input =
+  process.argv.slice(2).join(" ") ||
+  "I'm looking to purchase some art. Provide me some options around $50,000 that from trending artists."
 
 /*
  * Define the tools that the assistant can use:
@@ -66,27 +88,34 @@ const tools: OpenAI.Beta.FunctionTool[] = [
 
 async function main() {
   /*
-   * Create an assistant with models, tools, and instructions
+   * Create an assistant. Use an existing model by setting ASSISTANT_ID in env or create a new one with the tools defined above.
    */
 
-  const assistant = await openai.beta.assistants.create({
-    name: "Artsy Advisor",
-    instructions:
-      "You are an art advisor. Your job is to listen to your client and provide helpful recommendations of artworks and artists that they may like. You consider price range, medium, rarity, and other key attributes a client may want to consider when purchasing art. You ask clarifying questions where necessary to build an accurate profile on your client and provide more accurate recommendations.",
-    model: "gpt-3.5-turbo",
-    tools,
-  })
+  let assistant
+
+  if (process.env.ASSISTANT_ID) {
+    assistant = await openai.beta.assistants.retrieve(
+      process.env.ASSISTANT_ID as string
+    )
+  } else {
+    assistant = await openai.beta.assistants.create({
+      name: "Artsy Advisor",
+      instructions:
+        "You are an art advisor. Your job is to listen to your client and provide helpful recommendations of artworks and artists that they may like. You consider price range, medium, rarity, and other key attributes a client may want to consider when purchasing art. You ask clarifying questions where necessary to build an accurate profile on your client and provide more accurate recommendations.",
+      model: "gpt-3.5-turbo",
+      tools,
+    })
+  }
 
   /*
-   * Create a thread and send a message to the assistant
+   * Create a new thread and send it a message with the user's input.
    */
 
   const thread = await openai.beta.threads.create()
 
   await openai.beta.threads.messages.create(thread.id, {
     role: "user",
-    content:
-      "I'm looking to purchase some art. I like pop art and have a budget of $5,000.",
+    content: input,
   })
 
   /*
@@ -96,24 +125,26 @@ async function main() {
 
   let run = await openai.beta.threads.runs.createAndPoll(thread.id, {
     assistant_id: assistant.id,
-    instructions: "Respond like you work at artsy.net.",
+    instructions:
+      "Respond like you work at artsy.net. Always provide a list of artists and include the link to their profile. Always check artsy before making a recommendation.",
   })
 
   /*
-   * If the assistant wants to use a tool to help its response, then call the function (locally defined, further down) to get the result from Artsy's API
+   * If the assistant wants to use a tool to help its response, then call the function (locally defined, further down) to get the result from Artsy's API.
    */
 
   if (
     run.status === "requires_action" &&
     run.required_action?.type === "submit_tool_outputs"
   ) {
-    console.log("Calling function")
     const name =
       run.required_action.submit_tool_outputs.tool_calls?.[0].function.name
     const args = JSON.parse(
       run.required_action.submit_tool_outputs.tool_calls?.[0].function
         .arguments || "null"
     )
+
+    console.log(`Calling function: ${name} with args: ${JSON.stringify(args)}`)
 
     let artists
 
@@ -139,8 +170,9 @@ async function main() {
   }
 
   /*
-   * Poll the run until it reaches a completed state and print the messages
+   * Poll the run until it reaches a completed state and print the messages.
    */
+
   run = await openai.beta.threads.runs.poll(thread.id, run.id)
 
   if (run.status === "completed") {
@@ -156,7 +188,7 @@ async function main() {
 }
 
 /*
- * Define the get_artists() and get_curated_artists() functions that can be called by the chat completion
+ * Define the get_artists() and get_curated_artists() functions that can be called by the chat completion.
  */
 
 async function get_artists(args: { size: number; sort: string }) {
