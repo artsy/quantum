@@ -6,10 +6,13 @@
 import OpenAI from "openai"
 import dotenv from "dotenv"
 import express, { Request, Response } from "express"
+import cors from "cors"
 
 dotenv.config()
 const openai = new OpenAI()
 const app = express()
+
+app.use(cors())
 
 app.use(express.text())
 
