@@ -100,8 +100,6 @@ app.listen("3000", () => {
   console.log("Started proxy express server")
 })
 
-// TODO: remove once we use the get_user_profile function
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function get_user_profile() {
   return { Foo: "Bar" }
 }
