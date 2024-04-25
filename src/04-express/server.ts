@@ -104,7 +104,7 @@ app.post("/", async (req: Request, res: Response) => {
             {
               role: "user",
               content: `
-              Based on the following JSON context, return a paragraph listing the artist mentiond.
+              Based on the following JSON context, return a paragraph listing the artists mentioned.
 
               Context
               '''
