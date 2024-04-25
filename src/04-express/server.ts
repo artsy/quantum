@@ -84,10 +84,41 @@ app.post("/", async (req: Request, res: Response) => {
       //   response.choices[0].message.tool_calls?.[0].function.arguments || "null"
       // )
 
+      let profile
       if ("get_user_profile" === name) {
-        const profile = get_user_profile()
-        res.write(JSON.stringify(profile))
+        const args = {
+          token: req.headers["x-access-token"] as string,
+          size: 10,
+        }
+
+        profile = await get_user_profile(args)
+        console.log("User profile:", profile, args)
       }
+
+      let generatedResponse
+      if (profile) {
+        const response = await openai.chat.completions.create({
+          model: "gpt-3.5-turbo",
+          temperature: 0,
+          messages: [
+            {
+              role: "user",
+              content: `
+              Based on the following JSON context, return a paragraph listing the artist mentiond.
+
+              Context
+              '''
+              ${JSON.stringify(profile, null, 2)}
+              '''
+          `,
+            },
+          ],
+        })
+        console.log(response.choices[0].message.content)
+        generatedResponse = response.choices[0].message.content
+      }
+
+      res.write(JSON.stringify(generatedResponse || "PROFILE MISSING"))
     }
 
     res.end()
@@ -100,6 +131,59 @@ app.listen("3000", () => {
   console.log("Started proxy express server")
 })
 
-function get_user_profile() {
-  return { Foo: "Bar" }
+async function get_user_profile(args: { size: number; token: string }) {
+  const query = `query getUserProfile($size: Int!) {
+    me {
+      internalID
+      name
+      email
+      followsAndSaves {
+        artistsConnection(first: $size) {
+          edges {
+            node {
+              artist {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }`
+
+  const variables = {
+    size: args.size,
+  }
+
+  const headers = {
+    "X-ACCESS-TOKEN": args.token,
+    "Content-Type": "application/json",
+  }
+
+  const response = await metaphysics({ query, variables, headers })
+
+  const profile = response.data.me
+
+  return profile
+}
+
+/*
+ * Define the API helpers the the function calls will make use of
+ */
+
+async function metaphysics(args: {
+  query: string
+  variables: Record<string, unknown>
+  headers: Record<string, string>
+}) {
+  const { query, variables, headers } = args
+
+  const url = "https://metaphysics-staging.artsy.net/v2"
+
+  const body = JSON.stringify({ query, variables })
+  const options = { method: "POST", headers, body }
+
+  const response = await fetch(url, options)
+  const json = await response.json()
+  return json
 }
