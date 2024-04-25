@@ -104,7 +104,13 @@ app.post("/", async (req: Request, res: Response) => {
             {
               role: "user",
               content: `
-              Based on the following JSON context, return a paragraph listing the artists mentioned.
+              Based on the following JSON context, write 200 words about the styles and movement the user is interested in.
+
+              Here is an example of a high quality user profile:
+
+              Julianna H, is a Trusted Artsy Collector with a growing collection of Abstract Paintings and
+              Works on Paper with a focus on Ultra-Emerging Artists. They have demonstrated budget inline
+              with your gallery pricing.
 
               Context
               '''
@@ -142,6 +148,15 @@ async function get_user_profile(args: { size: number; token: string }) {
           edges {
             node {
               artist {
+                name
+              }
+            }
+          }
+        }
+        genesConnection(first: 10) {
+          edges {
+            node {
+              gene {
                 name
               }
             }
