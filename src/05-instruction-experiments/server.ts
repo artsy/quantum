@@ -2,7 +2,7 @@ import OpenAI from "openai"
 import dotenv from "dotenv"
 import express, { Request, Response } from "express"
 import cors from "cors"
-import { one } from "./00-prompt-lib/collector-profile"
+import { instructions } from "./00-prompt-lib/collector-profile-two"
 import chalk from "chalk"
 
 /*
@@ -51,7 +51,6 @@ app.post("/", async (req: Request, res: Response) => {
     res.header("Content-Type", "text/plain")
 
     console.log(chalk.yellow("Received request body: "), req.body)
-    console.log(chalk.yellow("Received request headers: "), req.headers)
 
     /*
      * Step 1: Get the response from the assistant, passing in the entire message history.
@@ -63,9 +62,9 @@ app.post("/", async (req: Request, res: Response) => {
     )
 
     // get a response from the model, providing the system instructions as the first message.
-    // NOTE: client is unaware of the system message since we don't append it to the messages array.
     const response = await openai.chat.completions.create({
-      messages: [{ role: "system", content: one }, ...messages],
+      // NOTE: client is unaware of the system message since we don't append it to the messages array.
+      messages: [{ role: "system", content: instructions }, ...messages],
       model: "gpt-4-turbo",
       tools,
     })
@@ -98,6 +97,7 @@ app.post("/", async (req: Request, res: Response) => {
       for (const toolCall of toolCalls) {
         const functionName = toolCall.function.name
 
+        // TODO: Add support for multiple tool calls in a single response
         // const functionToCall = availableFunctions[functionName]
         const functionArgs = {
           token: req.headers["x-access-token"] as string,
@@ -117,7 +117,7 @@ app.post("/", async (req: Request, res: Response) => {
         messages.push({
           tool_call_id: toolCall.id,
           role: "tool",
-          name: functionName, // Check if this in required, and why this is erroring, if it is.
+          name: functionName, // TODO: Check if this in required, and why the type error, if it is.
           content: JSON.stringify(functionResponse),
         })
       }
@@ -223,8 +223,3 @@ async function metaphysics(args: {
   const json = await response.json()
   return json
 }
-
-// TODO:
-// - Remove the response formatting once the client is refactored to handle the new format. It should just pop off the last message in the array and display it.
-// - Add support for multiple tool calls in a single response.
-// - generate a convo id and log the conversation to a file.
