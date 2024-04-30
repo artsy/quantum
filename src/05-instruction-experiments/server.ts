@@ -107,10 +107,8 @@ app.post("/", async (req: Request, res: Response) => {
         const functionResponse = await getUserProfile(functionArgs)
 
         console.log(
-          chalk.yellow(
-            `Function call response from ${functionName}: `,
-            functionResponse
-          )
+          chalk.yellow(`Function call response from ${functionName}: `),
+          functionResponse
         )
 
         // extend conversation with function response
