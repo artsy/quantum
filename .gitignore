@@ -11,3 +11,8 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# positron articles
+src/06-positron-rag/output/*
+!src/06-positron-rag/output/.gitkeep
+src/06-positron-rag/**/*.zip
