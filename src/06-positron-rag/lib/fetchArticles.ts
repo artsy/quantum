@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import fetch from "node-fetch"
 
 export async function fetchArticles(
   minArticleCount: number = 10,
