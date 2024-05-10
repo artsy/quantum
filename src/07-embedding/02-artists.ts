@@ -1,6 +1,11 @@
 import { ARTIST_IDS } from "./artist-ids"
 import weaviate from "weaviate-ts-client"
 
+const client = weaviate.client({
+  scheme: "https",
+  host: "https://weaviate.stg.artsy.systems",
+})
+
 const CLASS_NAME: string = "ArtistBio2"
 
 async function main() {
@@ -46,6 +51,15 @@ async function prepareArtistsCollection() {
           },
         },
       },
+      {
+        name: "slug",
+        dataType: ["text"],
+        moduleConfig: {
+          "text2vec-openai": {
+            skip: true,
+          },
+        },
+      },
     ],
   }
 
@@ -59,6 +73,15 @@ async function prepareArtistsCollection() {
 
 async function insertArtists(artists: { slug: string; blurb: string }[]) {
   console.log(`Going to insert ${artists.length} artists`)
+  artists.forEach(async (artist) => {
+    const objectResult = await client.data
+      .creator()
+      .withClassName(CLASS_NAME)
+      .withProperties(artist)
+      .do()
+
+    console.log(objectResult.properties?.slug)
+  })
 }
 
 async function fetchArtists(args: { size: number }) {
