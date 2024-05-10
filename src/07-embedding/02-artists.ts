@@ -15,6 +15,10 @@ async function main() {
   const artists = await fetchArtists()
   await prepareArtistsCollection()
   await insertArtists(artists)
+  /*
+   * now query from Weaviate console:
+   * https://link.weaviate.io/3UEZ854
+   */
 }
 
 main()
