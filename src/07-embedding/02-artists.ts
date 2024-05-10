@@ -1,5 +1,6 @@
 import { ARTIST_IDS } from "./artist-ids"
 import weaviate from "weaviate-ts-client"
+import _ from "lodash"
 
 const client = weaviate.client({
   scheme: "https",
@@ -8,8 +9,10 @@ const client = weaviate.client({
 
 const CLASS_NAME: string = "ArtistBio2"
 
+const BATCH_SIZE = 100
+
 async function main() {
-  const artists = await fetchArtists({ size: 100 })
+  const artists = await fetchArtists()
   await prepareArtistsCollection()
   await insertArtists(artists)
 }
@@ -73,18 +76,25 @@ async function prepareArtistsCollection() {
 
 async function insertArtists(artists: { slug: string; blurb: string }[]) {
   console.log(`Going to insert ${artists.length} artists`)
-  artists.forEach(async (artist) => {
-    const objectResult = await client.data
-      .creator()
-      .withClassName(CLASS_NAME)
-      .withProperties(artist)
-      .do()
 
-    console.log(objectResult.properties?.slug)
-  })
+  const batches = _.chunk(artists, BATCH_SIZE)
+  console.log(`Inserting ${batches.length} batches`)
+
+  for (const artistBatch of batches) {
+    let batcher = client.batch.objectsBatcher()
+    batcher = batcher.withObjects(
+      ...artistBatch.map((artist) => ({
+        class: CLASS_NAME,
+        properties: artist,
+      }))
+    )
+    process.stdout.write(".")
+    await batcher.do()
+  }
+  process.stdout.write("\n")
 }
 
-async function fetchArtists(args: { size: number }) {
+async function fetchArtists() {
   const query = `query getArtists ($size: Int!, $ids: [String]!) {
     artistsConnection(first: $size, ids: $ids) {
       edges {
@@ -97,19 +107,26 @@ async function fetchArtists(args: { size: number }) {
   }
   `
 
-  const variables = {
-    size: args.size,
-    ids: ARTIST_IDS,
-  }
-
   const headers = {
     "Content-Type": "application/json",
   }
 
-  const response = await metaphysics({ query, variables, headers })
+  const batches = _.chunk(ARTIST_IDS, BATCH_SIZE)
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return response.data.artistsConnection.edges.map((edge: any) => edge.node)
+  const artists = await Promise.all(
+    batches.map(async (ids) => {
+      const variables = {
+        size: ids.length,
+        ids,
+      }
+
+      const response = await metaphysics({ query, variables, headers })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return response.data.artistsConnection.edges.map((edge: any) => edge.node)
+    })
+  )
+
+  return artists.flat()
 }
 
 async function metaphysics(args: {
