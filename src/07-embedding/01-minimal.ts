@@ -1,5 +1,6 @@
 import OpenAI from "openai"
 import dotenv from "dotenv"
+import weaviate from "weaviate-ts-client"
 
 dotenv.config()
 const openai = new OpenAI()
@@ -11,6 +12,10 @@ const artist_2_bio = `Claude Monet’s lush, light-dappled plein air paintings e
 // spell-checker:enable
 
 async function main() {
+  /*
+   * EMBED with OpenAI
+   */
+
   const artist_1_response = await openai.embeddings.create({
     model: "text-embedding-ada-002",
     input: artist_1_bio,
@@ -29,6 +34,67 @@ async function main() {
 
   console.log("artist_1_vector", artist_1_vector.slice(0, 10))
   console.log("artist_2_vector", artist_2_vector.slice(0, 10))
+
+  /*
+   * PERSIST with Weaviate
+   */
+
+  const client = weaviate.client({
+    scheme: "https",
+    host: "https://weaviate.stg.artsy.systems",
+  })
+
+  // delete the class if it exists
+
+  const className: string = "ArtistBio" // Replace with your class name
+  await client.schema.classDeleter().withClassName(className).do()
+
+  // Add the class to the Weaviate schema
+
+  const classWithProps = {
+    class: "ArtistBio",
+
+    properties: [
+      {
+        name: "bio",
+        dataType: ["text"],
+      },
+    ],
+  }
+
+  const classResult = await client.schema
+    .classCreator()
+    .withClass(classWithProps)
+    .do()
+
+  console.log(classResult) // The returned value is the full class definition
+
+  // Insert the bios as new objects to the ArtistBio collection
+
+  let objectResult = await client.data
+    .creator()
+    .withClassName("ArtistBio")
+    .withProperties({
+      bio: artist_1_bio,
+    })
+    .withVector(artist_1_vector)
+    .do()
+
+  console.log(objectResult) // the returned value is the object
+
+  objectResult = await client.data
+    .creator()
+    .withClassName("ArtistBio")
+    .withProperties({
+      bio: artist_2_bio,
+    })
+    .withVector(artist_2_vector)
+    .do()
+
+  console.log(objectResult) // the returned value is the object
 }
 
 main()
+
+// And now you can view the results of this in Weaviate's GraphQL playground:
+// https://link.weaviate.io/3QBEmlH
