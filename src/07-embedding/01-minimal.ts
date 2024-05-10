@@ -1,6 +1,7 @@
 import OpenAI from "openai"
 import dotenv from "dotenv"
 import weaviate from "weaviate-ts-client"
+import _ from "lodash"
 
 dotenv.config()
 const openai = new OpenAI()
@@ -80,7 +81,7 @@ async function main() {
     .withVector(artist_1_vector)
     .do()
 
-  console.log(objectResult) // the returned value is the object
+  console.log(_.omit(objectResult, "vector")) // the returned value is the object
 
   objectResult = await client.data
     .creator()
@@ -91,7 +92,39 @@ async function main() {
     .withVector(artist_2_vector)
     .do()
 
-  console.log(objectResult) // the returned value is the object
+  console.log(_.omit(objectResult, "vector")) // the returned value is the object
+
+  /*
+   * Embed a user bio and issue a query based on it
+   */
+
+  // Tweak this to try out different queries
+  const user_bio = `I am interested in optical illusions`
+
+  const user_response = await openai.embeddings.create({
+    model: "text-embedding-ada-002",
+    input: user_bio,
+    encoding_format: "float",
+  })
+
+  const user_vector = user_response.data[0].embedding
+
+  // Query the ArtistBio collection for records that are "near" the user bio
+
+  const search_result = await client.graphql
+    .get()
+    .withClassName("ArtistBio")
+    .withNearVector({ vector: user_vector })
+    .withLimit(1)
+    .withFields("bio _additional { distance }")
+    .do()
+
+  console.log(
+    "\nQuerying for artist bio nearest to this user bio:\n\n",
+    user_bio,
+    "\n"
+  )
+  console.log(JSON.stringify(search_result, null, 2))
 }
 
 main()
