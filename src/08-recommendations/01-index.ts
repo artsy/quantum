@@ -36,7 +36,7 @@ async function main() {
 
   const response = await openai.chat.completions.create({
     messages: messages,
-    model: "gpt-4-turbo",
+    model: "gpt-4o",
     temperature: 0,
   })
 

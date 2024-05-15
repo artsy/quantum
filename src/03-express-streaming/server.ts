@@ -84,7 +84,7 @@ app.post("/", async (req: Request, res: Response) => {
     console.log("Received request:", req.headers)
 
     const stream = openai.beta.chat.completions.stream({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o",
       stream: true,
       messages: [
         {

@@ -111,7 +111,7 @@ async function main() {
    */
 
   const response = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o",
     temperature: 0,
     messages,
     tools,
@@ -145,7 +145,7 @@ async function main() {
 
     if (artists) {
       const response = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4o",
         temperature: 0,
         messages: [
           {

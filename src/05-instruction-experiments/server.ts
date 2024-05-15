@@ -65,7 +65,7 @@ app.post("/", async (req: Request, res: Response) => {
     const response = await openai.chat.completions.create({
       // NOTE: client is unaware of the system message since we don't append it to the messages array.
       messages: [{ role: "system", content: instructions }, ...messages],
-      model: "gpt-4-turbo",
+      model: "gpt-4o",
       tools,
     })
 
@@ -122,7 +122,7 @@ app.post("/", async (req: Request, res: Response) => {
 
       // get a second response including the function response(s) in the messages.
       const secondResponse = await openai.chat.completions.create({
-        model: "gpt-4-turbo",
+        model: "gpt-4o",
         messages: messages,
       })
 
