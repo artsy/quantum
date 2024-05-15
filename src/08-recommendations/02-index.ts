@@ -10,10 +10,8 @@
 import OpenAI from "openai"
 import dotenv from "dotenv"
 import chalk from "chalk"
-import {
-  artworkDescriptions,
-  ArtworkDescription,
-} from "./02-artwork-descriptions"
+import { artworkDescriptions } from "./02-artwork-descriptions"
+import _ from "lodash"
 
 dotenv.config()
 
@@ -43,14 +41,14 @@ async function main() {
   const userDescription = `I am a new collector. I want to build my collection by supporting women artists under the age of 40. I have a budget of $5000 per artwork. I prefer paintings and photographs.`
 
   // ChatGPT will return a valid JSON string with the three recommended artworks on each iteration and concatenate them to this string.
-  let result: string = ""
+  let finalCandidateList: string = ""
 
   // NOTE: This defaults to one iteration to prevent high token usage. Be careful of your token when changing the iteration count.
   //       I wouldn't recommend going above 3 iterations.
   for (let i = 0; i < 1; i++) {
     console.log(chalk.yellow(`On iteration: ${i + 1}`))
 
-    const shuffledDescriptions = shuffleArray(artworkDescriptions)
+    const shuffledDescriptions = _.shuffle(artworkDescriptions)
 
     const response = await openai.chat.completions.create({
       messages: [
@@ -72,37 +70,32 @@ async function main() {
       response.choices[0].message.content
     )
 
-    result = result
+    finalCandidateList = finalCandidateList
       ? response.choices[0].message.content!
-      : result + "," + response.choices[0].message.content!
+      : finalCandidateList + "," + response.choices[0].message.content!
   }
 
-  console.log(chalk.green("Result: "), result)
+  console.log(chalk.green("Final Candidate List: "), finalCandidateList)
 
   const finalResponse = await openai.chat.completions.create({
     messages: [
       { role: "system", content: finalSystemPrompt },
-      { role: "user", content: userMessageContent(userDescription, result) },
+      {
+        role: "user",
+        content: userMessageContent(userDescription, finalCandidateList),
+      },
     ],
     model: "gpt-4-turbo",
     temperature: 1,
   })
 
   console.log(
-    chalk.green("Final Result: "),
+    chalk.green("Final Response: "),
     finalResponse.choices[0].message.content
   )
 }
 
 main()
-
-function shuffleArray(array: ArtworkDescription[]) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[array[i], array[j]] = [array[j], array[i]]
-  }
-  return array
-}
 
 function userMessageContent(
   userDescription: string,
