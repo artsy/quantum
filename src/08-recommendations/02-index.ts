@@ -71,8 +71,8 @@ async function main() {
     )
 
     finalCandidateList = finalCandidateList
-      ? response.choices[0].message.content!
-      : finalCandidateList + "," + response.choices[0].message.content!
+      ? finalCandidateList + "," + response.choices[0].message.content!
+      : response.choices[0].message.content!
   }
 
   console.log(chalk.green("Final Candidate List: "), finalCandidateList)
