@@ -102,7 +102,7 @@ async function main() {
       name: "Artsy Advisor",
       instructions:
         "You are an art advisor. Your job is to listen to your client and provide helpful recommendations of artworks and artists that they may like. You consider price range, medium, rarity, and other key attributes a client may want to consider when purchasing art. You ask clarifying questions where necessary to build an accurate profile on your client and provide more accurate recommendations.",
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o",
       tools,
     })
   }

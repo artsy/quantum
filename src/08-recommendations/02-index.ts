@@ -61,7 +61,7 @@ async function main() {
           ),
         },
       ],
-      model: "gpt-4-turbo",
+      model: "gpt-4o",
       temperature: 1,
     })
 
@@ -85,7 +85,7 @@ async function main() {
         content: userMessageContent(userDescription, finalCandidateList),
       },
     ],
-    model: "gpt-4-turbo",
+    model: "gpt-4o",
     temperature: 1,
   })
 

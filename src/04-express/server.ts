@@ -72,7 +72,7 @@ app.post("/", async (req: Request, res: Response) => {
 
     const response = await openai.chat.completions.create({
       messages: JSON.parse(req.body),
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o",
       tools,
     })
 
@@ -99,7 +99,7 @@ app.post("/", async (req: Request, res: Response) => {
       let generatedResponse
       if (profile) {
         const responseFromTools = await openai.chat.completions.create({
-          model: "gpt-3.5-turbo",
+          model: "gpt-4o",
           temperature: 0,
           messages: [
             {
