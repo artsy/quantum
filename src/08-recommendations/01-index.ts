@@ -1,7 +1,7 @@
 import OpenAI from "openai"
 import dotenv from "dotenv"
 import chalk from "chalk"
-import { artworkDescriptions } from "./artwork-descriptions"
+import { artworkDescriptions } from "./01-artwork-descriptions"
 
 dotenv.config()
 

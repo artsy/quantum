@@ -25,30 +25,6 @@ Slug: elizabeth-higgins-woman-at-open-window
 </artwork>
 
 <artwork>
-"Morning News" is a work by Elizabeth Higgins
-Elizabeth Higgins is a female Canadian - American artist, born 1960
-Rarity: unique
-Medium: Painting
-Materials: Oil on paper
-Price info: $4,500
-Colors: yellow, pink, gray
-URL: https://www.artsy.net/artwork/elizabeth-higgins-morning-news
-Slug: elizabeth-higgins-morning-news
-</artwork>
-
-<artwork>
-"Net 1" is a work by Mirko Baricchi
-Mirko Baricchi is a male Italian artist, born 1970
-Rarity: unique
-Medium: Painting
-Materials: Oil on canvas
-Price info: €6,400
-Colors: yellow, orange, gray
-URL: https://www.artsy.net/artwork/mirko-baricchi-net-1
-Slug: mirko-baricchi-net-1
-</artwork>
-
-<artwork>
 "Net 2" is a work by Mirko Baricchi
 Mirko Baricchi is a male Italian artist, born 1970
 Rarity: unique
@@ -58,18 +34,6 @@ Price info: €6,400
 Colors: orange, yellow
 URL: https://www.artsy.net/artwork/mirko-baricchi-net-2
 Slug: mirko-baricchi-net-2
-</artwork>
-
-<artwork>
-"Lonigan’s Retreat" is a work by Grace Kennison
-Grace Kennison is a female  artist, born
-Rarity: unique
-Medium: Painting
-Materials: Acrylic on linen
-Price info: $6,000
-Colors: blue
-URL: https://www.artsy.net/artwork/grace-kennison-lonigans-retreat
-Slug: grace-kennison-lonigans-retreat
 </artwork>
 
 <artwork>
