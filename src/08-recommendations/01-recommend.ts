@@ -1,7 +1,7 @@
 import OpenAI from "openai"
 import dotenv from "dotenv"
 import chalk from "chalk"
-import { artworkDescriptions } from "./01-artwork-descriptions"
+import { artworkDescriptions } from "./data/artwork-texts"
 
 dotenv.config()
 
@@ -13,7 +13,7 @@ async function main() {
 
     Always make sure that the medium type matches the user's request.
 
-    Always include a justification as to why you are recommending each artwork. 
+    Always include a justification as to why you are recommending each artwork.
 
     Your output should include the artwork title, details as well as a one to two sentence description as to why this artwork matches the user's description.
   `
