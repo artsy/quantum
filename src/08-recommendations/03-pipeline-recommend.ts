@@ -82,7 +82,7 @@ async function main() {
 
   const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [
     { role: "system", content: systemPrompt },
-    { role: "user", content: initialUserMessage() },
+    { role: "user", content: initialUserMessage },
   ]
 
   // first response
@@ -112,7 +112,7 @@ async function main() {
   }
 }
 
-const initialUserMessage = () => `
+const initialUserMessage = `
   Recommend some artworks for this user:
 
   <userDescription>
