@@ -225,8 +225,6 @@ async function getArtworkRecommendations() {
       }
       materials: medium
       price: saleMessage
-      # dominantColors
-      # href
     }
   `
 
