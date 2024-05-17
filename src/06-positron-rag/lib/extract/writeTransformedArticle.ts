@@ -10,6 +10,7 @@ export function writeTransformedArticle(article: TransformedArticle) {
   const filepath = path.join(
     __dirname,
     "..",
+    "..",
     "output",
     `${filename ?? "unknown"}.json`
   )
