@@ -10,7 +10,7 @@
 import OpenAI from "openai"
 import dotenv from "dotenv"
 import chalk from "chalk"
-import { artworkDescriptions } from "./02-artwork-descriptions"
+import { artworkDescriptions } from "./data/artwork-objects"
 import _ from "lodash"
 
 dotenv.config()
