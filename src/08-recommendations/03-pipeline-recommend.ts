@@ -307,7 +307,7 @@ function printStatistics(content: string | null) {
     return candidateSlugs.indexOf(slug)
   })
 
-  const medianPosition = positions.reduce((a, b) => a + b, 0) / positions.length
+  const avgPosition = positions.reduce((a, b) => a + b, 0) / positions.length
 
   console.log(
     chalk.black.dim(
@@ -315,7 +315,7 @@ function printStatistics(content: string | null) {
       VERBOSE ? "\n" + candidateSlugs.join("\n").trim() + "\n" : "",
       "\nAnd appeared at positions:",
       positions.join(", "),
-      `\nThe median position was ${medianPosition}`
+      `\nThe average position was ${avgPosition}`
     )
   )
 }
