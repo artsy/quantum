@@ -15,6 +15,7 @@ export type TransformedArticle = {
   head: string
   body: string
   text: string
+  sections: string[]
 }
 
 function getArticleHead(article: any) {
@@ -37,6 +38,15 @@ function getArticleBody(article: any) {
   const allSections = sections.join("\n")
   const text = getTextFromHtml(allSections)
   return text
+}
+
+function getArticleSections(article: any) {
+  const sections = article.sections
+    .filter((s: any) => s.__typename === "ArticleSectionText")
+    .map((s: any) => s.body)
+    .map(getTextFromHtml)
+
+  return sections
 }
 
 function getArticleText(article: any) {
@@ -77,5 +87,6 @@ export function transformArticle(article: any): TransformedArticle {
     head: getArticleHead(article),
     body: getArticleBody(article),
     text: getArticleText(article),
+    sections: getArticleSections(article),
   }
 }
