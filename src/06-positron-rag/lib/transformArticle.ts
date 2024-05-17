@@ -9,6 +9,8 @@ export type TransformedArticle = {
     href: string
     publishedAt: string
     byline: string
+    vertical: string
+    channelName: string
   }
   head: string
   body: string
