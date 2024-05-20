@@ -230,7 +230,7 @@ async function fetchArtworks() {
 
   const batches = _.chunk(ARTWORK_IDS, BATCH_SIZE)
 
-  const artists = await Promise.all(
+  const artworks = await Promise.all(
     batches.map(async (ids) => {
       const variables = {
         size: ids.length,
@@ -257,7 +257,7 @@ async function fetchArtworks() {
     })
   )
 
-  return artists.flat()
+  return artworks.flat()
 }
 
 async function metaphysics(args: {
