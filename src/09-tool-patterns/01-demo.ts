@@ -1,3 +1,17 @@
+/**
+ * Demonstrates basic usage of the Vercel AI SDK:
+ *
+ * - Simple text generation
+ * - Switching between LLM providers
+ * - Streaming text generation
+ * - Using tools
+ * - Looping with tools
+ *
+ * Run the script to see them all in one go:
+ *
+ * yarn tsx src/09-tool-patterns/01-demo.ts
+ *
+ */
 import dotenv from "dotenv"
 import chalk from "chalk"
 import { CoreMessage, generateText, streamText, tool } from "ai"

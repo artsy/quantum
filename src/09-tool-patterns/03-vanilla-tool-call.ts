@@ -1,3 +1,11 @@
+/**
+ * Demonstrates that tools defined via Vercel AI SDK and
+ * can easily be called via the vendor's own API client and
+ * need not be locked into the Vercel abstractions.
+ *
+ * yarn tsx src/09-tool-patterns/03-vanilla-tool-call.ts
+ *
+ */
 import dotenv from "dotenv"
 import OpenAI from "openai"
 import dedent from "dedent"

@@ -1,3 +1,13 @@
+/**
+ * Demonstrates tool usage of the Vercel AI SDK, with some
+ * proposed patterns for Artsy-specific tools
+ *
+ * Requires having a USER_ID and USER_ACCESS_TOKEN provided via env
+ * so that it can generate a response based on user data
+ *
+ * yarn tsx src/09-tool-patterns/02-artsy-tools.ts
+ *
+ */
 import dotenv from "dotenv"
 import chalk from "chalk"
 import { CoreMessage, generateText } from "ai"
