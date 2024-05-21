@@ -1,7 +1,7 @@
 import chalk from "chalk"
 import { openai } from "@ai-sdk/openai"
 import { anthropic } from "@ai-sdk/anthropic"
-import { generateText } from "ai"
+import { generateText, streamText } from "ai"
 import { config } from "dotenv"
 import dedent from "dedent"
 
@@ -49,6 +49,27 @@ async function main() {
   console.log(prompt)
   console.log(chalk.bold.blue("\nResponse text"))
   console.log(response.text)
+
+  /*
+   * Uniform streaming API for all LLM providers
+   */
+
+  const streamedResponse = await streamText({
+    model: anthropic("claude-3-haiku-20240307"),
+    temperature: 0,
+    system,
+    prompt,
+  })
+
+  console.log(chalk.bold.red("\nStreaming response"))
+  console.log(chalk.bold.blue("\nPrompt"))
+  console.log(prompt)
+  console.log(chalk.bold.blue("\nResponse text"))
+
+  for await (const chunk of streamedResponse.textStream) {
+    process.stdout.write(chunk)
+  }
+  process.stdout.write("\n")
 }
 
 main()
