@@ -16,12 +16,12 @@ import chalk from "chalk"
 dotenv.config()
 const openai = new OpenAI()
 
-const userID = process.env.RECOMMENDATIONS_USER_ID
-const accessToken = process.env.RECOMMENDATIONS_USER_ACCESS_TOKEN
+const userID = process.env.USER_ID
+const accessToken = process.env.USER_ACCESS_TOKEN
 
 if (!userID || !accessToken) {
   throw new Error(
-    "Please provide a RECOMMENDATIONS_USER_ID and corresponding RECOMMENDATIONS_USER_ACCESS_TOKEN in the .env file to run this experiment"
+    "Please provide a USER_ID and corresponding USER_ACCESS_TOKEN in the .env file to run this experiment"
   )
 }
 
