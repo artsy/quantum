@@ -3,7 +3,11 @@ import chalk from "chalk"
 import { CoreMessage, generateText } from "ai"
 import { openai } from "@ai-sdk/openai"
 import dedent from "dedent"
-import { fetchUserArtistFollows } from "../lib/tools"
+import {
+  fetchShowsNearLocation,
+  fetchUser,
+  fetchUserArtistFollows,
+} from "../lib/tools"
 
 dotenv.config()
 
@@ -22,9 +26,7 @@ async function main() {
     {
       role: "user",
       content: dedent`
-        What are some things that the artists I am following right now have in common?
-
-        Be specific. Use 100 words or less.
+        Are there any shows near me with artists that I follow?
       `,
     },
   ]
@@ -38,7 +40,9 @@ async function main() {
       temperature: 0,
       messages,
       tools: {
+        fetchUser,
         fetchUserArtistFollows,
+        fetchShowsNearLocation,
       },
     })
 
