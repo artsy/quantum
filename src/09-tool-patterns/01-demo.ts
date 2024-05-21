@@ -1,18 +1,19 @@
+import dotenv from "dotenv"
 import chalk from "chalk"
+import { generateText, streamText, tool } from "ai"
 import { openai } from "@ai-sdk/openai"
 import { anthropic } from "@ai-sdk/anthropic"
-import { generateText, streamText } from "ai"
-import { config } from "dotenv"
 import dedent from "dedent"
+import { z } from "zod"
 
-config()
+dotenv.config()
 
 async function main() {
   const system = dedent`
     You are terse assistant, who responds in 100 words or less.
   `
 
-  const prompt = dedent`
+  let prompt = dedent`
     Who's that artist who makes those rooms full of mirrors?
   `
 
@@ -70,6 +71,41 @@ async function main() {
     process.stdout.write(chunk)
   }
   process.stdout.write("\n")
+
+  /*
+   * Simple tool demo
+   */
+
+  prompt = "What's 42 + 42?"
+
+  const toolResponse = await generateText({
+    model: openai("gpt-4o"),
+    temperature: 0,
+    prompt,
+    tools: {
+      addTwoNumbers,
+    },
+  })
+
+  console.log(chalk.bold.red("\nSimple tool call"))
+  console.log(chalk.bold.blue("\nPrompt"))
+  console.log(prompt)
+  console.log(chalk.bold.blue("\nResponse text"))
+  console.log(toolResponse.toolCalls)
+  console.log(toolResponse.toolResults)
 }
+
+/*
+ * Sample tool
+ */
+
+const addTwoNumbers = tool({
+  description: "Add two numbers",
+  parameters: z.object({
+    a: z.number(),
+    b: z.number(),
+  }),
+  execute: async ({ a, b }) => Promise.resolve(a + b),
+})
 
 main()
