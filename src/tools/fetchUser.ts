@@ -1,5 +1,5 @@
 import { tool } from "ai"
-import { metaphysics } from "../metaphysics"
+import { metaphysics } from "@/system/metaphysics"
 import { z } from "zod"
 
 export const fetchUser = tool({
