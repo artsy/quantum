@@ -46,6 +46,8 @@ const INCLUDE_BACKFILL = true
 /** for detailed logging of traffic to/from LLM and MP */
 const VERBOSE = false
 
+const TEMPERATURE = 0
+
 // Main
 
 async function main() {
@@ -56,12 +58,14 @@ async function main() {
   // initial message list
 
   const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [
-    { role: "system", content: systemPrompt(input) },
+    { role: "system", content: systemPrompt(input, TEMPERATURE) },
   ]
 
   // first response
 
-  const firstResponse = await getCompletion(messages)
+  const firstResponse = await getCompletion(messages, {
+    temperature: TEMPERATURE,
+  })
 
   // second response, based on tool call
 
@@ -73,7 +77,7 @@ async function main() {
   }
 
   const secondResponse: OpenAI.Chat.Completions.ChatCompletion | undefined =
-    await getCompletion(messages)
+    await getCompletion(messages, { temperature: TEMPERATURE })
 
   if (secondResponse !== undefined) {
     const { content } = secondResponse.choices[0].message
@@ -84,7 +88,8 @@ async function main() {
 }
 
 async function getCompletion(
-  messages: OpenAI.Chat.ChatCompletionMessageParam[]
+  messages: OpenAI.Chat.ChatCompletionMessageParam[],
+  options: { temperature: number }
 ) {
   console.log(chalk.white("\nGetting completion from OpenAI"))
   VERBOSE && console.log(chalk.cyan.dim("\n> Input >\n"))
@@ -92,7 +97,7 @@ async function getCompletion(
 
   const response = await openai.chat.completions.create({
     model: "gpt-4o",
-    temperature: 0,
+    temperature: options.temperature,
     messages,
     tools,
   })
@@ -109,7 +114,7 @@ function isTool(response: OpenAI.Chat.Completions.ChatCompletion) {
 async function getToolResult(
   response: OpenAI.Chat.Completions.ChatCompletion
 ): Promise<OpenAI.Chat.ChatCompletionToolMessageParam> {
-  console.log(chalk.white.dim("\nGetting tool result from Artsy"))
+  console.log(chalk.white("\nGetting tool result from Artsy"))
 
   const { tool_calls: toolCalls } = response.choices[0].message
 
@@ -186,6 +191,22 @@ async function getCollectorData() {
         }
       }
       recommendedArtworks(first: $size) {
+        edges {
+          node {
+            ...artwork
+          }
+        }
+      }
+    }
+    user(id: $userID) {
+      inquiredArtworksConnection(first: $size) {
+        edges {
+          node {
+            ...artwork
+          }
+        }
+      }
+      purchasedArtworksConnection(first: $size) {
         edges {
           node {
             ...artwork
@@ -273,9 +294,12 @@ async function metaphysics(args: {
 }
 
 export function writeOutput(content: string) {
-  const outputPath = path.join(__dirname, "output", `${input}.csv`)
+  const time = Date.now()
+  const timeStamp = new Date(time).toISOString()
 
-  fs.appendFile(outputPath, `\n${content}`, (err) => {
+  const outputPath = path.join(__dirname, "output", `${input}-${timeStamp}.csv`)
+
+  fs.appendFile(outputPath, `${content}`, (err) => {
     if (err) {
       console.error("Error:", err)
     }
