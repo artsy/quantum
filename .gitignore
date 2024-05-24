@@ -21,3 +21,6 @@ src/06-positron-rag/**/*.zip
 src/10-tone-voice/output/*
 !src/10-tone-voice/output/.gitkeep
 src/10-tone-voice/**/*.zip
+
+# brushy cli
+src/11-brushy-cli/**/*.txt
