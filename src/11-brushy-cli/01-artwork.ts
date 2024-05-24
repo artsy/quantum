@@ -1,3 +1,14 @@
+/**
+ * Adds a command-line approach for generating narratives for and artwork/user pair:
+ *
+ * yarn tsx src/11-brushy-cli/01-artwork --user <user id> --artwork <artwork id or slug>
+ *
+ * This will combine a computer vision step with artwork/artist/partner/user metadata to
+ * get a response from the LLM.
+ *
+ * Requires an ADMIN_ACCESS_TOKEN in the env to access some of the data.
+ * A default USER_ID and ARTWORK_ID can be set in the env as well.*
+ */
 import dotenv from "dotenv"
 import _ from "lodash"
 import chalk from "chalk"
