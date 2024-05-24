@@ -8,6 +8,8 @@ import dedent from "dedent"
 import { getImageDescription } from "./image"
 import { getData } from "./data"
 import { program } from "commander"
+import path from "path"
+import fs from "fs"
 
 dotenv.config()
 
@@ -151,10 +153,19 @@ async function main() {
     prompt,
   })
 
+  let finalAnswer = ""
+
   for await (const chunk of response.textStream) {
     process.stdout.write(chalk.bold.blue(chunk))
+    finalAnswer += chunk
   }
   process.stdout.write("\n\n")
+
+  // save to file
+
+  const fileName = `${userID}_${artworkID}_${model.modelId}.txt`
+  const filePath = path.join(__dirname, fileName)
+  fs.appendFileSync(filePath, finalAnswer)
 
   console.log(chalk.dim(JSON.stringify(await response.usage)))
 }

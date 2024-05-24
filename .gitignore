@@ -16,3 +16,4 @@ yarn-error.log*
 src/06-positron-rag/output/*
 !src/06-positron-rag/output/.gitkeep
 src/06-positron-rag/**/*.zip
+src/11-brushy-cli/**/*.txt
