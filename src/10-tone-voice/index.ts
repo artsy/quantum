@@ -206,13 +206,6 @@ async function getCollectorData() {
           }
         }
       }
-      purchasedArtworksConnection(first: $size) {
-        edges {
-          node {
-            ...artwork
-          }
-        }
-      }
     }
   }
 
@@ -226,6 +219,9 @@ async function getCollectorData() {
       gender
       nationality
       birthday
+    }
+    image {
+      url(version: ["small", "square"])
     }
     rarity: attributionClass {
       name
