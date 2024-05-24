@@ -16,3 +16,8 @@ yarn-error.log*
 src/06-positron-rag/output/*
 !src/06-positron-rag/output/.gitkeep
 src/06-positron-rag/**/*.zip
+
+# tone-voice experiment output
+src/10-tone-voice/output/*
+!src/10-tone-voice/output/.gitkeep
+src/10-tone-voice/**/*.zip
