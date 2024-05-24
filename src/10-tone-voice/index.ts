@@ -16,8 +16,9 @@ import path from "path"
 dotenv.config()
 const openai = new OpenAI()
 
-const userID = process.env.RECOMMENDATIONS_USER_ID
-const accessToken = process.env.RECOMMENDATIONS_USER_ACCESS_TOKEN
+const userID = process.env.USER_ID
+const accessToken = process.env.USER_ACCESS_TOKEN
+
 const input = process.argv.slice(2).join(" ")
 const promptPath = path.join(__dirname, "prompts", `${input}.ts`)
 
