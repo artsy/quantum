@@ -1,12 +1,10 @@
 /*
- * This variation tries the same technique of feeding candidates to the LLM to have it
- * choose and justify recommendations, but it differs from the previous attempts in two ways:
+ * Run this script, passing in the name of a prompt file from the prompts directory, to generate a csv file with the output.
  *
- * - it sources the artwork candidates from our actual recommendations pipeline via a tool call
- * - it provides fewer candidates
+ * Usage example:
  *
- * Because this makes a real query to Metaphysics for artwork recommendations, it requires
- * a valid user ID and access token to be provided as env vars / in the .env file.
+ * yarn tsx src/10-tone-voice 01-baseline
+ *
  */
 
 import OpenAI from "openai"
