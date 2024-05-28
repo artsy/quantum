@@ -1,5 +1,5 @@
 import { tool } from "ai"
-import { extractNodes, metaphysics } from "@/system/metaphysics"
+import { extractNodes, metaphysics } from "system/metaphysics"
 import { z } from "zod"
 
 const DEFAULT_NUMBER_OF_ARTISTS = 20

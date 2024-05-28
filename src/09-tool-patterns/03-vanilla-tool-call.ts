@@ -10,7 +10,7 @@ import dotenv from "dotenv"
 import OpenAI from "openai"
 import dedent from "dedent"
 import { zodToJsonSchema } from "zod-to-json-schema"
-import { fetchShowsNearLocation } from "@/tools/fetchShowsNearLocation"
+import { fetchShowsNearLocation } from "tools/fetchShowsNearLocation"
 
 dotenv.config()
 const openai = new OpenAI()

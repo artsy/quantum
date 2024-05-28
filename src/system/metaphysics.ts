@@ -3,7 +3,7 @@ interface Args {
   query: string
 
   /** GraphQL variables */
-  variables: Record<string, unknown>
+  variables?: Record<string, unknown>
 
   /**
    * HTTP Headers
@@ -12,7 +12,7 @@ interface Args {
    * provide them here.
    *
    */
-  headers: Record<string, string>
+  headers?: Record<string, string>
 }
 
 /**
@@ -20,7 +20,7 @@ interface Args {
  */
 
 export async function metaphysics(args: Args) {
-  const { query, variables } = args
+  const { query, variables = {} } = args
 
   // build query
   const url = `${process.env.METAPHYSICS_URL ?? "https://metaphysics-staging.artsy.net"}/v2`
@@ -36,9 +36,7 @@ export async function metaphysics(args: Args) {
 
   // handle errors, if any
   if (!response.ok) {
-    throw new Error(
-      `Network error: ${response.status} — ${response.statusText}`
-    )
+    throw new Error(`Error: ${response.status} — ${response.statusText}`)
   }
 
   const { data, errors } = await response.json()
