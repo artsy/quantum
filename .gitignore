@@ -24,3 +24,7 @@ src/10-tone-voice/**/*.zip
 
 # brushy cli
 src/11-brushy-cli/**/*.txt
+
+# fine-tuning mediums
+src/12-fine-tuning/data/training/*
+!src/12-fine-tuning/data/training/.gitkeep
