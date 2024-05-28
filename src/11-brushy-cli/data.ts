@@ -1,4 +1,4 @@
-import { metaphysics, extractNodes } from "@/system/metaphysics"
+import { metaphysics, extractNodes } from "system/metaphysics"
 
 export async function getData({
   artworkID,

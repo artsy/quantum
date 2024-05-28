@@ -13,9 +13,9 @@ import chalk from "chalk"
 import { CoreMessage, generateText } from "ai"
 import { openai } from "@ai-sdk/openai"
 import dedent from "dedent"
-import { fetchUser } from "@/tools/fetchUser"
-import { fetchUserArtistFollows } from "@/tools/fetchUserArtistFollows"
-import { fetchShowsNearLocation } from "@/tools/fetchShowsNearLocation"
+import { fetchUser } from "tools/fetchUser"
+import { fetchUserArtistFollows } from "tools/fetchUserArtistFollows"
+import { fetchShowsNearLocation } from "tools/fetchShowsNearLocation"
 
 dotenv.config()
 
