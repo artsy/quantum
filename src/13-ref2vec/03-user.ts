@@ -12,7 +12,7 @@ dotenv.config()
 const CLASS_NAME: ClassName = "Users"
 const BATCH_SIZE: number = 10
 const SAMPLE_SIZE: number = 3
-const USERS: User[] = [{ id: process.env.USER_ID!, name: "Percy Cat" }]
+const USERS: User[] = [{ id: "abc123", name: "Percy Cat" }]
 
 const client = weaviate.client({
   scheme: "https",
