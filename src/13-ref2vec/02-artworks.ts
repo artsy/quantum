@@ -1,7 +1,7 @@
-import { ARTWORK_IDS } from "./artwork-ids"
+import { ARTWORK_IDS } from "./ids/artwork-ids"
 import weaviate, { generateUuid5 } from "weaviate-ts-client"
 import _ from "lodash"
-import { Artwork } from "./types"
+import { Artwork } from "./types/types"
 
 // Constants
 const CLASS_NAME: string = "SmallNewTrendingArtworks"

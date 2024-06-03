@@ -1,9 +1,9 @@
-import { ARTWORK_IDS } from "./artwork-ids"
-import { ARTIST_IDS } from "./artist-ids"
+import { ARTWORK_IDS } from "./ids/artwork-ids"
+import { ARTIST_IDS } from "./ids/artist-ids"
 import weaviate, { generateUuid5 } from "weaviate-ts-client"
 import _ from "lodash"
 import dotenv from "dotenv"
-import { ClassName, Objects, ReferenceProperty, User } from "./types"
+import { ClassName, Objects, ReferenceProperty, User } from "./types/types"
 
 // Config
 dotenv.config()
