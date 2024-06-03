@@ -79,16 +79,16 @@ export async function prepareArticlesCollection() {
           },
         },
       },
-      // {
-      //   name: "keyword",
-      //   dataType: ["text"],
-      //   moduleConfig: {
-      //     "text2vec-openai": {
-      //       skip: true,
-      //       // vectorizePropertyName: false,
-      //     },
-      //   },
-      // },
+      {
+        name: "keywords",
+        dataType: ["text[]"],
+        moduleConfig: {
+          "text2vec-openai": {
+            skip: true,
+            // vectorizePropertyName: false,
+          },
+        },
+      },
       {
         name: "vertical",
         dataType: ["text"],
@@ -110,7 +110,17 @@ export async function prepareArticlesCollection() {
         },
       },
       {
-        name: "head",
+        name: "sectionIndex",
+        dataType: ["int"],
+        moduleConfig: {
+          "text2vec-openai": {
+            skip: true,
+            // vectorizePropertyName: false,
+          },
+        },
+      },
+      {
+        name: "section",
         dataType: ["text"],
         moduleConfig: {
           "text2vec-openai": {
@@ -120,7 +130,7 @@ export async function prepareArticlesCollection() {
         },
       },
       {
-        name: "body",
+        name: "articleDescription",
         dataType: ["text"],
         moduleConfig: {
           "text2vec-openai": {

@@ -1,39 +1,53 @@
-import _ from "lodash"
-import { TransformedArticle } from "../extract/transformArticle"
 import weaviate from "weaviate-ts-client"
-import { CLASS_NAME } from "../../02-insert-articles"
+import _ from "lodash"
+import { CLASS_NAME } from "06-positron-rag/02-insert-articles"
+import { TransformedArticle } from "../extract/transformArticle"
 
 const BATCH_SIZE = 20
 
 /**
- * Insert articles into Weaviate using the batch insertion API
+ * Insert articles (section by section) into Weaviate using the batch insertion API
  */
 export async function insertArticles(articles: TransformedArticle[]) {
   const client = weaviate.client({
-    scheme: "https",
     host: "https://weaviate.stg.artsy.systems",
   })
 
-  console.log(`Going to insert ${articles.length} articles`)
+  const articleSections = articles
+    .flatMap((article) => {
+      return article.sections.map((section, s) => {
+        if (section.length > 0) {
+          return {
+            class: CLASS_NAME,
+            properties: propertiesFromArticleSection(article, section, s),
+          }
+        }
+      })
+    })
+    .filter(Boolean)
 
-  const batches = _.chunk(articles, BATCH_SIZE)
-  console.log(`Inserting ${batches.length} batches`)
+  const batches = _.chunk(articleSections, BATCH_SIZE)
 
-  for (const articleBatch of batches) {
+  console.log(
+    `Going to insert ${articleSections.length} article-sections in ${batches.length} batches`
+  )
+
+  for (const sectionBatch of batches) {
     let batcher = client.batch.objectsBatcher()
-    batcher = batcher.withObjects(
-      ...articleBatch.map((article) => ({
-        class: CLASS_NAME,
-        properties: propertiesFromArticle(article),
-      }))
-    )
+
+    // @ts-expect-error gah
+    batcher = batcher.withObjects(...sectionBatch)
     process.stdout.write(".")
     await batcher.do()
   }
   process.stdout.write("\n")
 }
 
-function propertiesFromArticle(article: TransformedArticle) {
+function propertiesFromArticleSection(
+  article: TransformedArticle,
+  section: string,
+  sectionIndex: number
+) {
   return {
     // metadata, not vectorized
     internalID: article.metadata.internalID,
@@ -41,11 +55,13 @@ function propertiesFromArticle(article: TransformedArticle) {
     href: article.metadata.href,
     publishedAt: article.metadata.publishedAt,
     byline: article.metadata.byline,
+    keywords: article.metadata.keywords,
     vertical: article.metadata.vertical,
     channelName: article.metadata.channelName,
+    sectionIndex,
 
     // content, maybe vectorized
-    head: article.head,
-    body: article.body,
+    articleDescription: article.metadata.description,
+    section,
   }
 }
