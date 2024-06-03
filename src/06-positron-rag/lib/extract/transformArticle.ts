@@ -9,6 +9,8 @@ export type TransformedArticle = {
     href: string
     publishedAt: string
     byline: string
+    description: string
+    keywords: string[]
     vertical: string
     channelName: string
   }
@@ -64,6 +66,7 @@ function getArticleMetadata(article: any) {
     href,
     publishedAt,
     byline,
+    description,
     keywords,
     vertical,
     channel,
@@ -75,6 +78,7 @@ function getArticleMetadata(article: any) {
     href,
     publishedAt,
     byline,
+    description,
     keywords,
     vertical,
     channelName: channel.name,
