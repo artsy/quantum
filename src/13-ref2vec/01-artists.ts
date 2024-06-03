@@ -2,6 +2,7 @@ import { ARTIST_IDS } from "./ids/artist-ids"
 import weaviate, { generateUuid5 } from "weaviate-ts-client"
 import _ from "lodash"
 import { Artist } from "./types/types"
+import { metaphysics } from "system/metaphysics"
 
 // Constants
 const CLASS_NAME: string = "SmallNewTrendingArtists"
@@ -158,7 +159,7 @@ async function fetchArtists() {
       const response = await metaphysics({ query, variables, headers })
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return response.data.artistsConnection.edges.map((edge: any) => {
+      return response.artistsConnection.edges.map((edge: any) => {
         return {
           id: edge.node.internalID,
           birthday: edge.node.birthday,
@@ -186,21 +187,4 @@ async function fetchArtists() {
   )
 
   return artists.flat()
-}
-
-async function metaphysics(args: {
-  query: string
-  variables: Record<string, unknown>
-  headers: Record<string, string>
-}) {
-  const { query, variables, headers } = args
-
-  const url = "https://metaphysics-staging.artsy.net/v2"
-
-  const body = JSON.stringify({ query, variables })
-  const options = { method: "POST", headers, body }
-
-  const response = await fetch(url, options)
-  const json = await response.json()
-  return json
 }
