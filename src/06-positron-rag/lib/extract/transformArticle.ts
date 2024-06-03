@@ -81,7 +81,7 @@ function getArticleMetadata(article: any) {
     description,
     keywords,
     vertical,
-    channelName: channel.name,
+    channelName: channel?.name,
   }
 }
 
