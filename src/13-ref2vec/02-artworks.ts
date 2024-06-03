@@ -128,9 +128,6 @@ async function fetchArtworks() {
           slug
           href
           title
-          artist {
-            internalID
-          }
         }
       }
     }
@@ -163,7 +160,6 @@ async function fetchArtworks() {
           slug: edge.node.slug,
           title: edge.node.title,
           url: `https://staging.artsy.net${edge.node.href}`,
-          artistID: edge.node.artist.internalID,
         }
       })
     })

@@ -110,33 +110,6 @@ async function fetchArtists() {
           nationality
           name
           blurb
-          smallGalleries: filterArtworksConnection(
-            marketingCollectionID: "b25bd137-d978-4101-bbb1-1ab67c188f3a", first: 10
-          ) {
-            edges {
-              node {
-                internalID
-              }
-            }
-          }
-          new: filterArtworksConnection(
-            marketingCollectionID: "26923cfe-ca0c-44e0-a9cf-aec5cb1349c6", first: 10
-          ) {
-            edges {
-              node {
-                internalID
-              }
-            }
-          }
-          trending: filterArtworksConnection(
-            marketingCollectionID: "d78e9a17-ccf6-4104-b4e9-95c18f6412df", first: 10
-          ) {
-            edges {
-              node {
-                internalID
-              }
-            }
-          }
         }
       }
     }
@@ -167,20 +140,6 @@ async function fetchArtists() {
           nationality: edge.node.nationality,
           name: edge.node.name,
           blurb: edge.node.blurb,
-          artworks: [
-            ...(edge.node.smallGalleries?.edges?.map(
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              (edge: any) => edge.node.internalID
-            ) ?? []),
-            ...(edge.node.new?.edges?.map(
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              (edge: any) => edge.node.internalID
-            ) ?? []),
-            ...(edge.node.trending?.edges?.map(
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              (edge: any) => edge.node.internalID
-            ) ?? []),
-          ],
         }
       })
     })
