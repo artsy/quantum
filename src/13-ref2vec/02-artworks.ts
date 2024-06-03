@@ -17,7 +17,7 @@ async function main() {
   const artworks = await fetchArtworks()
 
   console.log(`Fetched ${artworks.length} artworks`)
-  console.log(artworks)
+
   await prepareCollection()
   await insertObjects(artworks, BATCH_SIZE)
 }
