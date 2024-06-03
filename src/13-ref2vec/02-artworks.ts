@@ -100,8 +100,8 @@ async function insertObjects(objects: Artwork[], batchSize: number) {
       ...userBatch.map((artwork) => {
         return {
           class: CLASS_NAME,
-          properties: _.omit(artwork, ["id"]),
-          id: generateUuid5(artwork.id),
+          properties: _.omit(artwork, ["internalID"]),
+          id: generateUuid5(artwork.internalID),
         }
       })
     )
@@ -152,7 +152,7 @@ async function fetchArtworks() {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return response.artworks.edges.map((edge: any) => {
         return {
-          id: edge.node.internalID,
+          internalID: edge.node.internalID,
           colors: edge.node.dominantColors.join(", "),
           medium: edge.node.mediumType.name,
           rarity: edge.node.attributionClass?.name || null,

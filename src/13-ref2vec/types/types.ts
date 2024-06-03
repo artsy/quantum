@@ -1,15 +1,14 @@
 export type Artist = {
-  id: string
+  internalID: string
   birthday: string
   gender: string
   nationality: string
   name: string
   blurb: string
-  artworks: string[]
 }
 
 export type Artwork = {
-  id: string
+  internalID: string
   colors: string
   medium: string
   rarity: string | null
@@ -17,7 +16,6 @@ export type Artwork = {
   slug: string
   title: string
   url: string
-  artistID: string
 }
 
 export type ClassName =

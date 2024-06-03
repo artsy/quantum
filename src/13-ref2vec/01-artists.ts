@@ -88,8 +88,8 @@ async function insertObjects(objects: Artist[], batchSize: number) {
       ...batch.map((artist) => {
         return {
           class: CLASS_NAME,
-          properties: _.omit(artist, ["id"]),
-          id: generateUuid5(artist.id),
+          properties: _.omit(artist, ["internalID"]),
+          id: generateUuid5(artist.internalID),
         }
       })
     )
@@ -132,9 +132,9 @@ async function fetchArtists() {
       const response = await metaphysics({ query, variables, headers })
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return response.artistsConnection.edges.map((edge: any) => {
+      return response.artistsConnection.edges.map((edge: { node: Artist }) => {
         return {
-          id: edge.node.internalID,
+          internalID: edge.node.internalID,
           birthday: edge.node.birthday,
           gender: edge.node.gender,
           nationality: edge.node.nationality,
