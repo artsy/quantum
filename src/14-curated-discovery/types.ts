@@ -25,3 +25,9 @@ export type GravityArtwork = {
   partner_slug: string
   partner_name: string
 }
+
+export type User = { id: string; name: string }
+
+export type ClassName = "DiscoveryArtworks" | "DiscoveryUsers"
+
+export type ReferenceProperty = "likedArtworks"
