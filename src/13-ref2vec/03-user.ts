@@ -4,6 +4,7 @@ import weaviate, { generateUuid5 } from "weaviate-ts-client"
 import _ from "lodash"
 import dotenv from "dotenv"
 import { ClassName, Objects, ReferenceProperty, User } from "./types/types"
+import { deleteIfExists } from "system/weaviate"
 
 // Config
 dotenv.config()
@@ -45,12 +46,7 @@ async function prepareCollection(className: ClassName) {
     host: process.env.WEAVIATE_URL!,
   })
 
-  const alreadyExists = await client.schema.exists(className)
-
-  if (alreadyExists) {
-    console.log(`${className} class already exists, deleting it`)
-    await client.schema.classDeleter().withClassName(className).do()
-  }
+  await deleteIfExists(className)
 
   const classSchema = {
     class: className,

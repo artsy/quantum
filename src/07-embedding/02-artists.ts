@@ -2,6 +2,7 @@ import { ARTIST_IDS } from "./artist-ids"
 import weaviate from "weaviate-ts-client"
 import _ from "lodash"
 import dotenv from "dotenv"
+import { deleteIfExists } from "system/weaviate"
 
 dotenv.config()
 
@@ -30,12 +31,7 @@ async function prepareArtistsCollection() {
     host: process.env.WEAVIATE_URL!,
   })
 
-  const alreadyExists = await client.schema.exists(CLASS_NAME)
-
-  if (alreadyExists) {
-    console.log(`${CLASS_NAME} class already exists, deleting it`)
-    await client.schema.classDeleter().withClassName(CLASS_NAME).do()
-  }
+  await deleteIfExists(CLASS_NAME)
 
   const classWithProps = {
     class: CLASS_NAME,
