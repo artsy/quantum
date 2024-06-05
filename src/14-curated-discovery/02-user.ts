@@ -1,36 +1,26 @@
 import { deleteIfExists } from "system/weaviate"
 import weaviate, { generateUuid5 } from "weaviate-ts-client"
 import _ from "lodash"
-// import { getArtworks } from "./01-ingest-artworks"
-import { ClassName, GravityArtwork, ReferenceProperty, User } from "./types"
+import { ClassName, ReferenceProperty, User } from "./types"
 import dotenv from "dotenv"
-import fs from "fs"
-import path from "path"
+import { getArtworks } from "./helpers"
 
 dotenv.config()
 
 // Constants
+const ARTWORKS_SAMPLE_SIZE: number = 5
 const CLASS_NAME: ClassName = "DiscoveryUsers"
-const USER: User = { id: "abc123", name: "Test" }
-const BATCH_SIZE: number = 10
-const SAMPLE_SIZE: number = 5
+const USER: User = { id: "abc123", name: "Percy The Cat" }
 
 const client = weaviate.client({
   host: process.env.WEAVIATE_URL!,
 })
 
 async function main() {
-  // const artworks = await getArtworks()
-  const filePath = path.join(__dirname, "./data/artworks.json")
-  const data = await fs.promises.readFile(filePath, "utf-8")
-  const artworks: GravityArtwork[] = JSON.parse(data)
-  const sampleArtworkIds = _.shuffle(artworks.map((el) => el.id)).slice(
-    0,
-    SAMPLE_SIZE
-  )
+  const sampleArtworkIds = await getSampleArtworkIds()
 
-  await prepareCollection("DiscoveryUsers")
-  await insertObjects([USER], BATCH_SIZE)
+  await prepareUserCollection()
+  await insertUser()
   await createReferences(
     USER,
     sampleArtworkIds,
@@ -39,11 +29,11 @@ async function main() {
   )
 }
 
-async function prepareCollection(className: ClassName) {
-  await deleteIfExists(className)
+async function prepareUserCollection() {
+  await deleteIfExists(CLASS_NAME)
 
   const classSchema = {
-    class: className,
+    class: CLASS_NAME,
     moduleConfig: {
       "ref2vec-centroid": {
         referenceProperties: ["likedArtworks"],
@@ -72,38 +62,24 @@ async function prepareCollection(className: ClassName) {
   console.log(JSON.stringify(classResult, null, 2))
 }
 
-async function insertObjects(objects: User[], batchSize: number) {
-  console.log(`Inserting users: ${objects.length}`)
-
-  const batches = _.chunk(objects, batchSize)
-  console.log(`Inserting ${batches.length} batches`)
-
-  for (const userBatch of batches) {
-    let batcher = client.batch.objectsBatcher()
-    batcher = batcher.withObjects(
-      ...userBatch.map((user) => {
-        return {
-          class: "DiscoveryUsers",
-          properties: _.omit(user, ["id"]),
-          id: generateUuid5(user.id),
-        }
-      })
-    )
-    process.stdout.write(`${userBatch.length}`)
-    await batcher.do()
-  }
-  process.stdout.write("\n")
+async function insertUser() {
+  await client.data
+    .creator()
+    .withClassName(CLASS_NAME)
+    .withProperties(_.omit(USER, "id"))
+    .withId(generateUuid5(USER.id))
+    .do()
 }
 
 async function createReferences(
   object: User,
-  referenceIDs: string[],
+  referenceIds: string[],
   referenceClassName: ClassName,
   referenceProperty: ReferenceProperty
 ) {
   const objectId = object.id
 
-  for (const referenceId of referenceIDs) {
+  for (const referenceId of referenceIds) {
     console.log(`Creating references for ${objectId} to ${referenceId}: `)
 
     await client.data
@@ -120,6 +96,14 @@ async function createReferences(
       )
       .do()
   }
+}
+
+async function getSampleArtworkIds() {
+  const artworks = await getArtworks()
+  const shuffledArtworks = _.shuffle(artworks)
+  const sampleArtworks = shuffledArtworks.slice(0, ARTWORKS_SAMPLE_SIZE)
+  const sampleArtworkIds = sampleArtworks.map((artwork) => artwork.id)
+  return sampleArtworkIds
 }
 
 main()
