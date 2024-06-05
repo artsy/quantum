@@ -1,10 +1,12 @@
 import { ARTIST_IDS } from "./artist-ids"
 import weaviate from "weaviate-ts-client"
 import _ from "lodash"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const client = weaviate.client({
-  scheme: "https",
-  host: "https://weaviate.stg.artsy.systems",
+  host: process.env.WEAVIATE_URL!,
 })
 
 const CLASS_NAME: string = "ArtistBio2"
@@ -25,8 +27,7 @@ main()
 
 async function prepareArtistsCollection() {
   const client = weaviate.client({
-    scheme: "https",
-    host: "https://weaviate.stg.artsy.systems",
+    host: process.env.WEAVIATE_URL!,
   })
 
   const alreadyExists = await client.schema.exists(CLASS_NAME)

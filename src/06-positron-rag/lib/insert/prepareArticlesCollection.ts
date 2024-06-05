@@ -1,13 +1,15 @@
 import weaviate from "weaviate-ts-client"
 import { CLASS_NAME } from "../../02-insert-articles"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 /**
  * Prepare a new Weaviate collection for articles and configure its properties and vectorization
  */
 export async function prepareArticlesCollection() {
   const client = weaviate.client({
-    scheme: "https",
-    host: "https://weaviate.stg.artsy.systems",
+    host: process.env.WEAVIATE_URL!,
   })
 
   const alreadyExists = await client.schema.exists(CLASS_NAME)

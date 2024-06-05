@@ -15,8 +15,7 @@ const SAMPLE_SIZE: number = 3
 const USERS: User[] = [{ id: "abc123", name: "Percy Cat" }]
 
 const client = weaviate.client({
-  scheme: "https",
-  host: "https://weaviate.stg.artsy.systems",
+  host: process.env.WEAVIATE_URL!,
 })
 
 async function main() {
@@ -43,8 +42,7 @@ main()
 
 async function prepareCollection(className: ClassName) {
   const client = weaviate.client({
-    scheme: "https",
-    host: "https://weaviate.stg.artsy.systems",
+    host: process.env.WEAVIATE_URL!,
   })
 
   const alreadyExists = await client.schema.exists(className)

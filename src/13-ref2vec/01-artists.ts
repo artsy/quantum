@@ -3,14 +3,16 @@ import weaviate, { generateUuid5 } from "weaviate-ts-client"
 import _ from "lodash"
 import { Artist } from "./types/types"
 import { metaphysics } from "system/metaphysics"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 // Constants
 const CLASS_NAME: string = "SmallNewTrendingArtists"
 const BATCH_SIZE: number = 100
 
 const client = weaviate.client({
-  scheme: "https",
-  host: "https://weaviate.stg.artsy.systems",
+  host: process.env.WEAVIATE_URL!,
 })
 
 async function main() {
@@ -26,8 +28,7 @@ main()
 
 async function prepareCollection() {
   const client = weaviate.client({
-    scheme: "https",
-    host: "https://weaviate.stg.artsy.systems",
+    host: process.env.WEAVIATE_URL!,
   })
 
   const alreadyExists = await client.schema.exists(CLASS_NAME)
