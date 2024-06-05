@@ -42,10 +42,6 @@ async function main() {
 main()
 
 async function prepareCollection(className: ClassName) {
-  const client = weaviate.client({
-    host: process.env.WEAVIATE_URL!,
-  })
-
   await deleteIfExists(className)
 
   const classSchema = {

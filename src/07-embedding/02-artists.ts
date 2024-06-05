@@ -27,10 +27,6 @@ async function main() {
 main()
 
 async function prepareArtistsCollection() {
-  const client = weaviate.client({
-    host: process.env.WEAVIATE_URL!,
-  })
-
   await deleteIfExists(CLASS_NAME)
 
   const classWithProps = {

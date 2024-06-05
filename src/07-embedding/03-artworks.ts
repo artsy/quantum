@@ -30,10 +30,6 @@ async function main() {
 main()
 
 async function prepareArtworksCollection() {
-  const client = weaviate.client({
-    host: process.env.WEAVIATE_URL!,
-  })
-
   await deleteIfExists(CLASS_NAME)
 
   const classWithProps = {
