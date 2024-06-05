@@ -2,6 +2,9 @@ import weaviate from "weaviate-ts-client"
 import _ from "lodash"
 import { CLASS_NAME } from "06-positron-rag/02-insert-articles"
 import { TransformedArticle } from "../extract/transformArticle"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const BATCH_SIZE = 20
 
@@ -10,7 +13,7 @@ const BATCH_SIZE = 20
  */
 export async function insertArticles(articles: TransformedArticle[]) {
   const client = weaviate.client({
-    host: "https://weaviate.stg.artsy.systems",
+    host: process.env.WEAVIATE_URL!,
   })
 
   const articleSections = articles

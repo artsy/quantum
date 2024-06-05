@@ -3,14 +3,17 @@ import weaviate, { generateUuid5 } from "weaviate-ts-client"
 import _ from "lodash"
 import { Artwork } from "./types/types"
 import { metaphysics } from "system/metaphysics"
+import dotenv from "dotenv"
+import { deleteIfExists } from "system/weaviate"
+
+dotenv.config()
 
 // Constants
 const CLASS_NAME: string = "SmallNewTrendingArtworks"
 const BATCH_SIZE: number = 100
 
 const client = weaviate.client({
-  scheme: "https",
-  host: "https://weaviate.stg.artsy.systems",
+  host: process.env.WEAVIATE_URL!,
 })
 
 async function main() {
@@ -25,17 +28,7 @@ async function main() {
 main()
 
 async function prepareCollection() {
-  const client = weaviate.client({
-    scheme: "https",
-    host: "https://weaviate.stg.artsy.systems",
-  })
-
-  const alreadyExists = await client.schema.exists(CLASS_NAME)
-
-  if (alreadyExists) {
-    console.log(`${CLASS_NAME} class already exists, deleting it`)
-    await client.schema.classDeleter().withClassName(CLASS_NAME).do()
-  }
+  await deleteIfExists(CLASS_NAME)
 
   const classWithProps = {
     class: CLASS_NAME,

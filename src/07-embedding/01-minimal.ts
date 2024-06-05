@@ -41,8 +41,7 @@ async function main() {
    */
 
   const client = weaviate.client({
-    scheme: "https",
-    host: "https://weaviate.stg.artsy.systems",
+    host: process.env.WEAVIATE_URL!,
   })
 
   // delete the class if it exists
