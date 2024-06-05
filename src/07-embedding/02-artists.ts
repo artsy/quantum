@@ -34,7 +34,7 @@ async function prepareArtistsCollection() {
     vectorizer: "text2vec-openai",
     moduleConfig: {
       "text2vec-openai": {
-        model: "ada",
+        model: "text-embedding-3-small",
         dimensions: 1536,
         type: "text",
         vectorizeClassName: false,
