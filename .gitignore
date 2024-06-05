@@ -28,3 +28,4 @@ src/11-brushy-cli/**/*.txt
 # fine-tuning mediums
 src/12-fine-tuning/data/training/*
 !src/12-fine-tuning/data/training/.gitkeep
+src/14-curated-discovery/data/**/*.json
