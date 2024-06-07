@@ -1,13 +1,17 @@
-import weaviate, { generateUuid5 } from "weaviate-ts-client"
-import _ from "lodash"
-import { GravityArtwork } from "./types"
-import { deleteIfExists } from "system/weaviate"
 import dotenv from "dotenv"
+import fs from "fs"
+import path from "path"
+import weaviate, { generateUuid5 } from "weaviate-ts-client"
+import chalk from "chalk"
+import _ from "lodash"
+import { deleteIfExists } from "system/weaviate"
+import { GravityArtwork } from "./types"
 import { getArtworks } from "./helpers"
 
 dotenv.config()
 
-const CLASS_NAME = "DiscoveryArtworks"
+// const CLASS_NAME = "DiscoveryArtworks"
+const CLASS_NAME = "DiscoveryArtworksCV"
 const BATCH_SIZE = 100
 
 const client = weaviate.client({
@@ -250,6 +254,7 @@ async function insertArtworks(
     let batcher = client.batch.objectsBatcher()
     batcher = batcher.withObjects(
       ...artworkBatch.map((artwork) => {
+        const imageDescription = getImageDescription(artwork)
         return {
           class: CLASS_NAME,
           properties: {
@@ -269,7 +274,7 @@ async function insertArtworks(
             tags: artwork.tags,
             additionalInformation: artwork.additional_information,
             imageUrl: artwork.image_url,
-            imageDescription: null, // TODO: add computer vision step?
+            imageDescription,
             artistID: artwork.artist_id,
             partnerID: artwork.partner_id,
           },
@@ -281,6 +286,27 @@ async function insertArtworks(
     await batcher.do()
   }
   process.stdout.write("\n")
+}
+
+function getImageDescription(artwork: GravityArtwork) {
+  try {
+    const file = path.join(__dirname, "data", "images", `${artwork.id}.json`)
+    const data = fs.readFileSync(file, "utf-8")
+    const { description } = JSON.parse(data)
+    return description
+  } catch (error) {
+    // @ts-expect-error error.code does exist
+    if (error.code == "ENOENT") {
+      console.error(
+        chalk.red(
+          `No image description found for ${artwork.id} (${artwork.slug}). The file may not exist`
+        )
+      )
+      return null
+    } else {
+      throw error
+    }
+  }
 }
 
 main().catch(console.error)
