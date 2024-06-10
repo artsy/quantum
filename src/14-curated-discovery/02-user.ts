@@ -10,7 +10,7 @@ dotenv.config()
 // Constants
 const ARTWORKS_SAMPLE_SIZE: number = 5
 const CLASS_NAME: ClassName = "DiscoveryUsers"
-const USER: User = { id: "abc123", name: "Percy The Cat" }
+const USER: User = { id: "abc123", name: "Test User" }
 
 const client = weaviate.client({
   host: process.env.WEAVIATE_URL!,
@@ -50,6 +50,11 @@ async function prepareUserCollection() {
         name: "likedArtworks",
         dataType: ["DiscoveryArtworks"],
         description: "Artworks liked by the user",
+      },
+      {
+        name: "dislikedArtworks",
+        dataType: ["DiscoveryArtworks"],
+        description: "Artworks disliked by the user",
       },
     ],
   }
