@@ -1,3 +1,17 @@
+export type GravityArtist = {
+  id: string
+  slug: string
+  name: string
+  nationality: string
+  birthday: string
+  deathday: string
+  location: string
+  hometown: string
+  gender: string
+  categories: string[]
+  blurb: string
+}
+
 export type GravityArtwork = {
   id: string
   slug: string
