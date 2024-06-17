@@ -1,20 +1,25 @@
 # How to generate the data
 
-This documents the Gravity console snippets that were used to generate the datasets that go into this experiments data directory:
+This documents the Gravity console snippets that were used to generate the
+datasets that go into this experiments data directory:
 
 - `14-curated-discovery/data/artworks.json`
 - `14-curated-discovery/data/artists.json`
 - `14-curated-discovery/data/partners.json`
 
-These files are gitignored due to their size and currently live in a shared drive instead:
+These files are gitignored due to their size and currently live in a shared
+drive instead:
 
- - https://drive.google.com/drive/u/1/folders/1Lh7msUc0R_JlpNEzApZ4YbqB8x5tbpws
+- https://drive.google.com/drive/u/1/folders/1Lh7msUc0R_JlpNEzApZ4YbqB8x5tbpws
 
-The files were generated via the following Ruby snippets which were entered directly into a Gravity Rails console.
+The files were generated via the following Ruby snippets which were entered
+directly into a Gravity Rails console.
 
 ## Choose collections
 
-For a smaller dataset (a few hundred works), select a handful of collections. The ones here represent the ones highlighted in the website's global nav, under the **Artists** dropdown:
+For a smaller dataset (a few hundred works), select a handful of collections.
+The ones here represent the ones highlighted in the website's global nav, under
+the **Artists** dropdown:
 
 ```ruby
 collections = [
@@ -28,7 +33,8 @@ collections = [
 ]
 ```
 
-For a larger dataset (a few thousand works), select all manually curated collections:
+For a larger dataset (a few thousand works), select all manually curated
+collections:
 
 ```ruby
 collections = CuratedMarketingCollection.pluck(:id)
@@ -51,7 +57,9 @@ partners = artworks.map(&:partner).uniq.compact
 
 ## Serialize the artworks
 
-Here we opt to use collector-facing terminology rather than Artsy internal jargon, on the assumption that this would perform better with the embedding models. For example:
+Here we opt to use collector-facing terminology rather than Artsy internal
+jargon, on the assumption that this would perform better with the embedding
+models. For example:
 
 - attribution_class → **rarity**
 - category → **medium**
@@ -61,7 +69,9 @@ Here we opt to use collector-facing terminology rather than Artsy internal jargo
 
 We also keep some basic info about the associated artists and partners.
 
-We don't necessarily expect to index all of this data onto artworks, but it is included so that we have the option to do so, or to build up references to objects in other collections.
+We don't necessarily expect to index all of this data onto artworks, but it is
+included so that we have the option to do so, or to build up references to
+objects in other collections.
 
 ```ruby
 # artworks json
@@ -125,9 +135,9 @@ end)
 
 ## Serialize the partners
 
-Here again we use "categories" instead of partner_categories. This draws from a different vocabulary than the gene-based fields do, but it amounts to another categorization system.
-
-
+Here again we use "categories" instead of partner_categories. This draws from a
+different vocabulary than the gene-based fields do, but it amounts to another
+categorization system.
 
 ```ruby
 # partners json
@@ -138,6 +148,39 @@ puts JSON.pretty_generate(partners.map do |p|
     name: p.name,
     verified_artist_ids: VerifiedRepresentative.where(partner: p).map(&:artist).compact.map(&:id),
     categories: p.partner_categories.map(&:name)
+  }
+end)
+```
+
+### Serialize marketing collections
+
+Again, we opt to use collector-facing terminology rather than Artsy internal
+jargon, on the assumption that this would perform better with the embedding
+models. We also want to be consistent in the field names we use for genes. For
+example:
+
+- category → **group**
+- genes → **categories**
+
+```ruby
+# Get all marketing collections with a description
+collections = MarketingCollection.where("description is not null and description <> ''")
+```
+
+```ruby
+# artworks json
+puts JSON.pretty_generate(collections.map do |w|
+  {
+    id: w.id,
+    title: w.title,
+    slug: w.slug,
+    description: w.description,
+    group: w.category,
+    price_guidance: w.price_guidance,
+    artist_ids: w.artist_ids,
+    artwork_ids: w.artwork_ids,
+    category:  w.gene_ids.map{ |id| Gene.find(id: "#{id}").name },
+    image_url: w.cover_image_url,
   }
 end)
 ```

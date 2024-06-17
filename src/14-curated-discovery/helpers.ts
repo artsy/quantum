@@ -1,4 +1,8 @@
-import { GravityArtist, GravityArtwork } from "./types"
+import {
+  GravityArtist,
+  GravityArtwork,
+  GravityArtworkCollection,
+} from "./types"
 import path from "path"
 import fs from "fs"
 import _ from "lodash"
@@ -30,6 +34,21 @@ export async function getArtists() {
   const filePath = path.join(__dirname, "./data/artists.json")
   const data = await fs.promises.readFile(filePath, "utf-8")
   const artworks: GravityArtist[] = JSON.parse(data)
+  return artworks
+}
+
+/**
+ * Read collections from a local JSON file
+ *
+ * The JSON file will be gitignored, but the data can
+ * be obtained from a shared folder, currently at:
+ *
+ * https://drive.google.com/drive/u/1/folders/1Lh7msUc0R_JlpNEzApZ4YbqB8x5tbpws
+ */
+export async function getCollections() {
+  const filePath = path.join(__dirname, "./data/collections.json")
+  const data = await fs.promises.readFile(filePath, "utf-8")
+  const artworks: GravityArtworkCollection[] = JSON.parse(data)
   return artworks
 }
 
