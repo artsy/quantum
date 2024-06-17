@@ -186,7 +186,7 @@ async function getShortDescription(description: string) {
       {
         role: "system",
         content:
-          "Your task is to take a description of a collection of Artworks and cut it down to one sentence. Maintain the tone and voice of the original description.",
+          "Your task is to take a description of a collection of Artworks and cut it down to one, plain text formatted, sentence. Maintain the tone and voice of the original description.",
       },
       { role: "user", content: description },
     ],
