@@ -164,7 +164,7 @@ example:
 
 ```ruby
 # Get all marketing collections with a description
-collections = MarketingCollection.where("description is not null and description <> ''")
+collections = MarketingCollection.where("description is not null and description <> ''").where(published: true)
 ```
 
 ```ruby
