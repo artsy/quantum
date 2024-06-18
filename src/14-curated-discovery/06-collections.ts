@@ -1,6 +1,6 @@
 import weaviate, { generateUuid5 } from "weaviate-ts-client"
 import _ from "lodash"
-import { GravityArtworkCollection } from "./types"
+import { DiscoveryMarketingCollections } from "./types"
 import { deleteIfExists } from "system/weaviate"
 import dotenv from "dotenv"
 import { getCollections } from "./helpers"
@@ -8,7 +8,7 @@ import OpenAI from "openai"
 
 dotenv.config()
 
-const CLASS_NAME = "DiscoveryArtworkCollections"
+const CLASS_NAME = "DiscoveryMarketingCollections"
 const BATCH_SIZE = 100
 
 const client = weaviate.client({
@@ -77,7 +77,7 @@ async function prepareCollectionsCollection() {
         },
       },
       {
-        name: "short_description",
+        name: "shortDescription",
         dataType: ["text"],
         moduleConfig: {
           "text2vec-openai": {
@@ -86,7 +86,7 @@ async function prepareCollectionsCollection() {
         },
       },
       {
-        name: "category",
+        name: "categories",
         dataType: ["text[]"],
         description:
           "The 'name's of the genes pulled from associated 'gene_ids' in Gravity's MarketingCollection Model",
@@ -108,8 +108,8 @@ async function prepareCollectionsCollection() {
         },
       },
       {
-        name: "price_guidance",
-        dataType: ["text"],
+        name: "priceGuidance",
+        dataType: ["number"],
         moduleConfig: {
           "text2vec-openai": {
             skip: true,
@@ -117,7 +117,7 @@ async function prepareCollectionsCollection() {
         },
       },
       {
-        name: "image_url",
+        name: "imageUrl",
         dataType: ["text"],
         moduleConfig: {
           "text2vec-openai": {
@@ -143,7 +143,7 @@ async function prepareCollectionsCollection() {
  * based on its Gravity ID
  */
 async function insertCollections(
-  collections: GravityArtworkCollection[],
+  collections: DiscoveryMarketingCollections[],
   batchSize: number = BATCH_SIZE
 ) {
   console.log(`Inserting collection: ${collections.length}`)
@@ -161,12 +161,12 @@ async function insertCollections(
           class: CLASS_NAME,
           properties: {
             internalID: collection.id,
-            category: collection.category,
+            categories: collection.categories,
             description: collection.description,
-            short_description: shortDescriptions[collection.id],
+            shortDescription: shortDescriptions[collection.id],
             group: collection.group,
-            image_url: collection.image_url,
-            price_guidance: collection.price_guidance,
+            imageUrl: collection.image_url,
+            priceGuidance: collection.price_guidance,
             slug: collection.slug,
             title: collection.title,
           },
@@ -209,7 +209,7 @@ async function getShortDescription(description: string) {
  * @returns a dictionary of artwork collection ids and their short descriptions
  */
 export async function batchShortDescriptions(
-  collections: GravityArtworkCollection[]
+  collections: DiscoveryMarketingCollections[]
 ): Promise<{ [key: string]: string }> {
   const shortDescriptionFieldPairs = await Promise.all(
     collections.map(async (collection) => {

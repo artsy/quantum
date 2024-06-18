@@ -1,7 +1,7 @@
 import {
   GravityArtist,
   GravityArtwork,
-  GravityArtworkCollection,
+  DiscoveryMarketingCollections,
 } from "./types"
 import path from "path"
 import fs from "fs"
@@ -48,7 +48,7 @@ export async function getArtists() {
 export async function getCollections() {
   const filePath = path.join(__dirname, "./data/collections.json")
   const data = await fs.promises.readFile(filePath, "utf-8")
-  const artworks: GravityArtworkCollection[] = JSON.parse(data)
+  const artworks: DiscoveryMarketingCollections[] = JSON.parse(data)
   return artworks
 }
 
@@ -63,7 +63,7 @@ export async function getBase64Blob(imageUrl: string): Promise<string> {
   const buffer = await response.arrayBuffer()
   return Buffer.from(buffer).toString("base64")
 }
-
+DiscoveryMarketingCollections
 /**
  * Generate an url for a resized, cached version of an image.
  *

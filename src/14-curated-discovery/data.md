@@ -164,22 +164,22 @@ example:
 
 ```ruby
 # Get all marketing collections with a description
-collections = MarketingCollection.where("description is not null and description <> ''").where(published: true)
+collections = MarketingCollection.where("description_markdown is not null and description_markdown <> ''").where(published: true)
 ```
 
 ```ruby
-# artworks json
+# collections json
 puts JSON.pretty_generate(collections.map do |w|
   {
     id: w.id,
     title: w.title,
     slug: w.slug,
-    description: w.description,
+    description: w.description_markdown,
     group: w.category,
-    price_guidance: w.price_guidance,
+    price_guidance: w.price_guidance.to_f,
     artist_ids: w.artist_ids,
     artwork_ids: w.artwork_ids,
-    category:  w.gene_ids.map{ |id| Gene.find(id: "#{id}").name },
+    categories:  w.gene_ids.map{ |id| Gene.find(id: "#{id}").name },
     image_url: w.cover_image_url,
   }
 end)
