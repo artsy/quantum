@@ -40,6 +40,17 @@ export type GravityArtwork = {
   partner_name: string
 }
 
+export type DiscoveryMarketingCollections = {
+  id: string
+  categories: string[]
+  description: string
+  group: string
+  image_url: string
+  price_guidance: string
+  slug: string
+  title: string
+}
+
 export type User = { id: string; name: string }
 
 export type ClassName = "DiscoveryArtworks" | "DiscoveryUsers"

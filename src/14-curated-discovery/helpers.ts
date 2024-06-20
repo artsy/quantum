@@ -1,4 +1,8 @@
-import { GravityArtist, GravityArtwork } from "./types"
+import {
+  GravityArtist,
+  GravityArtwork,
+  DiscoveryMarketingCollections,
+} from "./types"
 import path from "path"
 import fs from "fs"
 import _ from "lodash"
@@ -34,6 +38,21 @@ export async function getArtists() {
 }
 
 /**
+ * Read collections from a local JSON file
+ *
+ * The JSON file will be gitignored, but the data can
+ * be obtained from a shared folder, currently at:
+ *
+ * https://drive.google.com/drive/u/1/folders/1Lh7msUc0R_JlpNEzApZ4YbqB8x5tbpws
+ */
+export async function getCollections() {
+  const filePath = path.join(__dirname, "./data/collections.json")
+  const data = await fs.promises.readFile(filePath, "utf-8")
+  const artworks: DiscoveryMarketingCollections[] = JSON.parse(data)
+  return artworks
+}
+
+/**
  * Read an image over the network and convert it to a base64 string
  *
  * @param imageUrl URL of the image to read
@@ -44,7 +63,7 @@ export async function getBase64Blob(imageUrl: string): Promise<string> {
   const buffer = await response.arrayBuffer()
   return Buffer.from(buffer).toString("base64")
 }
-
+DiscoveryMarketingCollections
 /**
  * Generate an url for a resized, cached version of an image.
  *
