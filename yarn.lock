@@ -1805,6 +1805,13 @@ optionator@^0.9.3:
     prelude-ls "^1.2.1"
     type-check "^0.4.0"
 
+p-all@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/p-all/-/p-all-5.0.0.tgz#3fcbdf28177a09442fc7f4ec9e252e0eed5ecfc5"
+  integrity sha512-pofqu/1FhCVa+78xNAptCGc9V45exFz2pvBRyIvgXkNM0Rh18Py7j8pQuSjA+zpabI46v9hRjNWmL9EAFcEbpw==
+  dependencies:
+    p-map "^6.0.0"
+
 p-limit@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-3.1.0.tgz#e1daccbe78d0d1388ca18c64fea38e3e57e3706b"
@@ -1818,6 +1825,16 @@ p-locate@^5.0.0:
   integrity sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==
   dependencies:
     p-limit "^3.0.2"
+
+p-map@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/p-map/-/p-map-6.0.0.tgz#4d9c40d3171632f86c47601b709f4b4acd70fed4"
+  integrity sha512-T8BatKGY+k5rU+Q/GTYgrEf2r4xRMevAN5mtXc2aPc4rS1j3s+vWTaO2Wag94neXuCAUAs8cxBL9EeB5EA6diw==
+
+p-series@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/p-series/-/p-series-3.0.0.tgz#ca5669abbc4342a48f5475d4d7c4c52442a4e48c"
+  integrity sha512-geaabIwiqy+jN4vuJROl1rpMJT/myHAMAfdubPQGJT3Grr8td+ogWvTk2qLsNlhYXcoZZAfl01pfq7lK3/gYKQ==
 
 parent-module@^1.0.0:
   version "1.0.1"
