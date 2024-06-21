@@ -1,3 +1,18 @@
+/**
+ * This experiment extracts a structured budget intent from user-supplied free text.
+ *
+ * Running this will generate multiple results across a number of examples and models.
+ *
+ * The results can be view in budgetIntents.ndjson
+ *
+ * They can also be converted to csv (via csv-kit) with:
+ *
+ * $ cat budgetIntents.ndjson | in2csv -f ndjson > budgetIntents.csv
+ *
+ * These^ csv results and some stats can be viewed at:
+ * https://docs.google.com/spreadsheets/d/1S1-7IJOPc26cgSlWaxP1bz9HEuNJXgQJTDdAyx7XRB0/edit?usp=sharing
+ *
+ */
 import _ from "lodash"
 import { anthropic } from "@ai-sdk/anthropic"
 import { LanguageModel, generateObject } from "ai"
