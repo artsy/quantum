@@ -57,13 +57,18 @@ const chalkFn: Record<string, (...args: string[]) => void> = {
 
 const system = dedent`
   Your task is to analyze a plaintext budget statement
-  and produce a structured object to describe it.
+  from a collector who is interested in buying one or more artworks,
+  and to produce a structured object to describe it.
 
   If a budget expresses a range, set min and max accordingly.
 
   If a budget expresses a single amount, then set min to 0 and max to the amount.
 
   If a budget cannot be inferred, set both min and max to -1.
+
+  If the number of artworks is stated or implied, set numberOfArtworks accordingly.
+
+  If the number of artworks is not stated or implied, set numberOfArtworks to -1.
 `
 
 const prompt = (statement: string) => dedent`
