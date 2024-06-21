@@ -3,6 +3,8 @@
   "cSpell.words": [
     "Deleter",
     "openai",
+    "rerank",
+    "reranker",
     "vectorize",
     "vectorizer",
     "weaviate"

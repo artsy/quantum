@@ -38,6 +38,9 @@ async function prepareCollectionsCollection() {
         type: "text",
         vectorizeClassName: true,
       },
+      "reranker-cohere": {
+        model: "rerank-multilingual-v3.0",
+      },
     },
     properties: [
       {
