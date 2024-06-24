@@ -13,6 +13,7 @@ export type TransformedArticle = {
     keywords: string[]
     vertical: string
     channelName: string
+    imageUrl: string
   }
   head: string
   body: string
@@ -70,6 +71,7 @@ function getArticleMetadata(article: any) {
     keywords,
     vertical,
     channel,
+    thumbnailImage,
   } = article
 
   return {
@@ -82,6 +84,7 @@ function getArticleMetadata(article: any) {
     keywords,
     vertical,
     channelName: channel?.name,
+    imageUrl: thumbnailImage?.imageURL,
   }
 }
 

@@ -26,6 +26,9 @@ export async function fetchArticles(
             searchTitle # unused?
             href
             publishedAt
+            thumbnailImage {
+              imageURL
+            }
 
             # creators
             byline
