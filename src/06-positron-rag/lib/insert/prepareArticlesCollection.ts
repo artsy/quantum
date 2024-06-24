@@ -137,6 +137,16 @@ export async function prepareArticlesCollection() {
           },
         },
       },
+      {
+        name: "imageUrl",
+        dataType: ["text"],
+        moduleConfig: {
+          "text2vec-openai": {
+            skip: true,
+            // vectorizePropertyName: false,
+          },
+        },
+      },
     ],
   }
 

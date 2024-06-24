@@ -61,6 +61,7 @@ function propertiesFromArticleSection(
     keywords: article.metadata.keywords,
     vertical: article.metadata.vertical,
     channelName: article.metadata.channelName,
+    imageUrl: article.metadata.imageUrl,
     sectionIndex,
 
     // content, maybe vectorized
