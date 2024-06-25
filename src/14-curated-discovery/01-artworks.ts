@@ -144,6 +144,24 @@ async function prepareArtworkCollection() {
         },
       },
       {
+        name: "priceMinMinorUSD",
+        dataType: ["number"],
+        moduleConfig: {
+          "text2vec-openai": {
+            skip: true,
+          },
+        },
+      },
+      {
+        name: "priceMaxMinorUSD",
+        dataType: ["number"],
+        moduleConfig: {
+          "text2vec-openai": {
+            skip: true,
+          },
+        },
+      },
+      {
         name: "artworkLocation",
         dataType: ["text"],
         moduleConfig: {
@@ -264,6 +282,8 @@ async function insertArtworks(
             price: artwork.price,
             listPriceAmount: artwork.list_price_amount,
             listPriceCurrency: artwork.list_price_currency,
+            priceMinMinorUSD: artwork.price_min_minor_usd,
+            priceMaxMinorUSD: artwork.price_max_minor_usd,
             artworkLocation: artwork.artwork_location,
             categories: artwork.categories,
             tags: artwork.tags,

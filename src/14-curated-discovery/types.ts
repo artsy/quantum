@@ -24,6 +24,8 @@ export type GravityArtwork = {
   price: string
   list_price_amount: number
   list_price_currency: string
+  price_min_minor_usd: number
+  price_max_minor_usd: number
   artwork_location: string
   categories: string[]
   tags: string[]
