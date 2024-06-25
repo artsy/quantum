@@ -88,6 +88,8 @@ puts JSON.pretty_generate(artworks.map do |w|
     price: w.sale_message,
     list_price_amount: w.price_listed,
     list_price_currency: w.price_currency,
+    price_min_minor_usd: w.price_min_minor_usd,
+    price_max_minor_usd: w.price_max_minor_usd,
     artwork_location: w.location&.geocoded_city,
     categories: w.total_genome.without("Art", "Career Stage Gene").select{ |k,v| k !~ /(galleries based|made in)/i && v == 100}.keys,
     tags: w.tags + w.auto_tags,
