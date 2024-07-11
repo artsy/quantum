@@ -29,7 +29,8 @@ collections = [
   "new-from-small-galleries",
   "new-from-tastemaking-galleries",
   "new-this-week",
-  "trending-now"
+  "trending-now",
+  "art-quiz-collection"
 ]
 ```
 

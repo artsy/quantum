@@ -29,3 +29,6 @@ src/11-brushy-cli/**/*.txt
 src/12-fine-tuning/data/training/*
 !src/12-fine-tuning/data/training/.gitkeep
 src/14-curated-discovery/data/**/*.json
+
+# art-quiz json
+src/16-art-quiz/data/*
