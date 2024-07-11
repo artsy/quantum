@@ -1,4 +1,4 @@
-This data is used to build a poc using weaviate to provide real-time recommendation for the onboarding art quiz. Follow these steps to generate.
+This data supports a [force poc](https://github.com/artsy/force/pull/14194) using weaviate to provide real-time recommendation for the onboarding art quiz. Follow these steps to generate.
 
 ### Step 1
 Generate a list of artworks from our `MarketingCollection`s, follow the steps in src/14-curated-discovery/data.md for artworks.

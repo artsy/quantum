@@ -8,7 +8,7 @@ import fs from "fs"
  * The JSON file will be gitignored, but the data can
  * be obtained from a shared folder, currently at:
  *
- * https://drive.google.com/drive/u/1/folders/1Lh7msUc0R_JlpNEzApZ4YbqB8x5tbpws
+ * https://drive.google.com/drive/folders/13hwE6ysjeSuwa19_3Vx_BwR5rBcUs8fq?usp=drive_link
  */
 export async function getArtworks() {
   const filePath = path.join(__dirname, "./data/artworks.json")
