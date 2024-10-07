@@ -18,7 +18,9 @@ const client = weaviate.client({
 
 async function main() {
   await prepareCollection(CLASS_NAME)
-  await insertObjects(USERS, BATCH_SIZE)
+  if (USERS.length !== 0) {
+    await insertObjects(USERS, BATCH_SIZE)
+  }
 }
 
 main()
