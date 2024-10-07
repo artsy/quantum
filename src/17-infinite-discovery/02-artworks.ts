@@ -114,6 +114,24 @@ async function prepareCollection() {
           },
         },
       },
+      {
+        name: "listPriceAmount",
+        dataType: ["number"],
+        moduleConfig: {
+          "text2vec-openai": {
+            skip: true,
+          },
+        },
+      },
+      {
+        name: "listPriceCurrency",
+        dataType: ["text"],
+        moduleConfig: {
+          "text2vec-openai": {
+            skip: true,
+          },
+        },
+      },
     ],
   }
 
