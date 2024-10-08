@@ -52,7 +52,7 @@ async function prepareCollection(className: UsersClassName) {
         name: "DislikedArtworks",
         dataType: ["InfiniteDiscoveryArtworks"],
         description:
-          "Artworks disliked by this user. Used to calculate filter the artworks from infinite discovery results.",
+          "Artworks disliked by this user. Used to filter the artworks from infinite discovery results.",
       },
     ],
   }
