@@ -38,7 +38,7 @@ async function prepareCollection() {
         dataType: ["text"],
         moduleConfig: {
           "text2vec-openai": {
-            skip: false,
+            skip: true,
           },
         },
       },
