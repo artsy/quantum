@@ -22,7 +22,7 @@ collections:
 collections = CuratedMarketingCollection.pluck(:id)
 ```
 
-## Select artworks and their associated artists and partners
+## Select artworks and their associated artists
 
 ```ruby
 # artworks
@@ -43,7 +43,7 @@ models. For example:
 - genes → **categories**
 - etc.
 
-We also keep some basic info about the associated artists and partners.
+We also keep some basic info about the associated artists.
 
 We don't necessarily expect to index all of this data onto artworks, but it is
 included so that we have the option to do so, or to build up references to
