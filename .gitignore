@@ -32,3 +32,6 @@ src/14-curated-discovery/data/**/*.json
 
 # art-quiz json
 src/16-art-quiz/data/*
+
+# infinite-discovery json
+src/17-infinite-discovery/data/*
