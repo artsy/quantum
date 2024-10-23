@@ -9,7 +9,7 @@ dotenv.config()
 
 // Constants
 const CLASS_NAME: UsersClassName = "InfiniteDiscoveryUsers"
-const USERS: User[] = [{ internalID: "1", name: "Jane Tester" }]
+const USERS: User[] = []
 const BATCH_SIZE: number = 10
 
 const client = weaviate.client({
@@ -49,10 +49,10 @@ async function prepareCollection(className: UsersClassName) {
           "Artworks liked by this user. Used to calculate the user's vector.",
       },
       {
-        name: "dislikedArtworks",
+        name: "seenArtworks",
         dataType: ["InfiniteDiscoveryArtworks"],
         description:
-          "Artworks disliked by this user. Used to filter the artworks from infinite discovery results.",
+          'Artworks this user has seen and not "liked". Should not be considered a negative signal.',
       },
     ],
   }
