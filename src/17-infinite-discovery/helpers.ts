@@ -1,7 +1,7 @@
 import { GravityArtwork } from "./types"
 import path from "path"
 import fs from "fs"
-import _ from "lodash"
+import { fromPairs, defaults } from "lodash"
 
 /**
  * Read artworks from a local JSON file
