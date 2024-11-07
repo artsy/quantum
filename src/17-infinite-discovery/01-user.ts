@@ -1,5 +1,5 @@
 import weaviate, { generateUuid5 } from "weaviate-ts-client"
-import _ from "lodash"
+import { chunk } from "lodash"
 import dotenv from "dotenv"
 import { UsersClassName, User } from "./types"
 import { deleteIfExists } from "system/weaviate"
@@ -68,7 +68,7 @@ async function prepareCollection(className: UsersClassName) {
 async function insertObjects(objects: User[], batchSize: number) {
   console.log(`Inserting users: ${objects.length}`)
 
-  const batches = _.chunk(objects, batchSize)
+  const batches = chunk(objects, batchSize)
   console.log(`Inserting ${batches.length} batches`)
 
   for (const userBatch of batches) {

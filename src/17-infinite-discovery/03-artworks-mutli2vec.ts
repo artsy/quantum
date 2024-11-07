@@ -1,5 +1,5 @@
 import weaviate, { generateUuid5 } from "weaviate-ts-client"
-import _ from "lodash"
+import { chunk } from "lodash"
 import { GravityArtwork } from "./types"
 import { deleteIfExists } from "system/weaviate"
 import dotenv from "dotenv"
@@ -137,7 +137,7 @@ async function insertArtworks(
 ) {
   console.log(`Inserting artwork: ${artworks.length}`)
 
-  const batches = _.chunk(artworks, batchSize)
+  const batches = chunk(artworks, batchSize)
   console.log(`Inserting ${batches.length} batches`)
 
   for (const artworkBatch of batches) {

@@ -1,4 +1,4 @@
-import _ from "lodash"
+import { chunk } from "lodash"
 import { ArtworksClassName, GravityArtwork } from "./types"
 import { deleteIfExists } from "system/weaviate"
 import { getArtworks } from "./helpers"
@@ -221,7 +221,7 @@ async function insertArtworks(
 ) {
   console.log(`Inserting artwork: ${artworks.length}`)
 
-  const batches = _.chunk(artworks, batchSize)
+  const batches = chunk(artworks, batchSize)
   console.log(`Inserting ${batches.length} batches`)
 
   for (const artworkBatch of batches) {

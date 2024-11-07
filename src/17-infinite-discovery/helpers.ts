@@ -35,7 +35,7 @@ export async function getImageDataForArtworks(
       return [artwork.id, image]
     })
   )
-  const imageData = _.fromPairs(imageFieldPairs)
+  const imageData = fromPairs(imageFieldPairs)
   return imageData
 }
 
@@ -60,7 +60,7 @@ export function resizeImage(
     height: number
   }
 ) {
-  const { width, height } = _.defaults(options, { width: 500, height: 500 })
+  const { width, height } = defaults(options, { width: 500, height: 500 })
   return `https://d7hftxdivxxvm.cloudfront.net/?src=${src}&resize_to=fit&width=${width}&height=${height}&grow=false`
 }
 
