@@ -5,7 +5,7 @@
 ## Load the production console
 
 ```bash
-  bundle exec rails console production
+  hokusai production run --tty 'bin/rails c -- --nomultiline'
 ```
 
 ```ruby
@@ -39,7 +39,7 @@
 ```
 
 Download the json file from the
-[public s3 bucket](https://us-east-1.console.aws.amazon.com/s3/object/artsy-public?region=us-east-1&bucketType=general&prefix=curater_picks.json).
+[s3 bucket](https://us-east-1.console.aws.amazon.com/s3/object/artsy-data?region=us-east-1&bucketType=general&prefix=curater_picks.json).
 
 # How to generate the data normally
 
