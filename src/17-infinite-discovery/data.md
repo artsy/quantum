@@ -35,7 +35,7 @@
     }
   end)
   s3_client = S3.new(bucket: "artsy-public")
-  s3_client.store_object("curater_picks.json", json, "text/json", "public-read")
+  s3_client.store_object("curators_picks.json", json, "text/json", "public-read")
 ```
 
 Download the json file from the
