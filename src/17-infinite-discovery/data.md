@@ -1,6 +1,41 @@
 # How to generate the data
 
-## Quick way to generate the data
+## Export large artwork dataset
+
+```ruby
+# assuming you want to export recent artworks from the last month
+from_date = 1.month.ago.beginning_of_month
+to_date = 1.month.ago.end_of_month
+published_artworks = Artwork.published.for_sale.where(:published_at.gte => from_date, :published_at.lte => to_date).only(:id, :_slugs, :genome, :automated_genome, :partner_genome, :visual_genome, :title, :dates, :attribution_class, :category, :medium, :price_listed, :price_currency, :tags, :auto_tags, :additional_information, :default_image, :additional_images, :default_image_id, :artist_ids, :colors, :artists)
+
+artworks = published_artworks.to_a
+artworks_json = JSON.pretty_generate(artworks.map do |w|
+  {
+    id: w.id,
+    slug: w.slug,
+    title: w.title,
+    date: w.date,
+    rarity: w.attribution_class,
+    medium: w.category,
+    materials: w.medium,
+    list_price_amount: w.price_listed,
+    list_price_currency: w.price_currency,
+    categories: w.total_genome.without("Art", "Career Stage Gene").select{ |k,v| k !~ /(galleries based|made in)/i && v == 100}.keys,
+    tags: w.tags + w.auto_tags,
+    additional_information: w.additional_information,
+    image_url: w.default_image.image_urls['large'],
+    colors: w.colors,
+    artist_name: w.artists.first&.name,
+    artist_nationality: w.artists.first&.nationality,
+    artist_birthday: w.artists.first&.birthday,
+    artist_gender: w.artists.first&.gender,
+  }
+end)
+s3_client = S3.new(bucket: "artsy-data")
+s3_client.store_object("recent-artworks.json", artworks_json, "text/json", "public-read")
+```
+
+## Quick way to generate collection data
 
 ## Load the production console
 
@@ -34,7 +69,7 @@
       artist_gender: w.artists.first&.gender,
     }
   end)
-  s3_client = S3.new(bucket: "artsy-public")
+  s3_client = S3.new(bucket: "artsy-data")
   s3_client.store_object("curators_picks.json", json, "text/json", "public-read")
 ```
 
