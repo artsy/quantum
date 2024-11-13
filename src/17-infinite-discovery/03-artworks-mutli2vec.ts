@@ -17,7 +17,7 @@ const client = weaviate.client({
 async function main() {
   await deleteIfExists(CLASS_NAME)
   await prepareArtworkCollection()
-  const artworks = await getArtworks()
+  const artworks = await getArtworks("2024-11-12_artworks.json")
   await insertArtworks(artworks)
 }
 
@@ -30,6 +30,7 @@ async function prepareArtworkCollection() {
     vectorizer: "multi2vec-clip",
     moduleConfig: {
       "multi2vec-clip": {
+        dimensions: 512,
         textFields: [
           "title",
           "medium",
@@ -37,6 +38,8 @@ async function prepareArtworkCollection() {
           "categories",
           "tags",
           "additionalInformation",
+          "date",
+          "artistName",
         ],
         imageFields: ["image"],
       },
@@ -114,6 +117,10 @@ async function prepareArtworkCollection() {
         name: "artistGender",
         dataType: ["text"],
       },
+      {
+        name: "isCurated",
+        dataType: ["boolean"],
+      },
     ],
   }
 
@@ -135,6 +142,8 @@ async function insertArtworks(
   artworks: GravityArtwork[],
   batchSize: number = BATCH_SIZE
 ) {
+  const start = Date.now()
+  console.log("Started inserting artworks at: ", start)
   console.log(`Inserting artwork: ${artworks.length}`)
 
   const batches = chunk(artworks, batchSize)
@@ -168,6 +177,7 @@ async function insertArtworks(
             artistBirthday: artwork.artist_birthday,
             artistGender: artwork.artist_gender,
             image: imageData[artwork.id],
+            isCurated: false,
           },
           id: generateUuid5(artwork.id),
         }
@@ -177,7 +187,7 @@ async function insertArtworks(
     await batcher.do()
   }
   process.stdout.write("\n")
-  console.log("Done.")
+  console.log("Finished inserting artworks at: ", Date.now() - start)
 }
 
 main().catch(console.error)
