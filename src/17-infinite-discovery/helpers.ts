@@ -11,8 +11,8 @@ import { fromPairs, defaults } from "lodash"
  *
  * https://drive.google.com/drive/u/1/folders/1Lh7msUc0R_JlpNEzApZ4YbqB8x5tbpws
  */
-export async function getArtworks() {
-  const filePath = path.join(__dirname, "./data/artworks.json")
+export async function getArtworks(filename: string) {
+  const filePath = path.join(__dirname, `./data/${filename}`)
   const data = await fs.promises.readFile(filePath, "utf-8")
   const artworks: GravityArtwork[] = JSON.parse(data)
   return artworks
@@ -60,8 +60,8 @@ export function resizeImage(
     height: number
   }
 ) {
-  const { width, height } = defaults(options, { width: 500, height: 500 })
-  return `https://d7hftxdivxxvm.cloudfront.net/?src=${src}&resize_to=fit&width=${width}&height=${height}&grow=false`
+  const { width, height } = defaults(options, { width: 224, height: 224 })
+  return `https://d7hftxdivxxvm.cloudfront.net/?src=${src}&resize_to=fit&width=${width}&height=${height}&grow=false&quality=75`
 }
 
 /**
