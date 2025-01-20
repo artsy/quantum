@@ -4,14 +4,50 @@ import dotenv from "dotenv"
 import { z } from "zod"
 import { zodToJsonSchema } from "zod-to-json-schema"
 import dedent from "dedent"
+import { getImageData } from "./image"
+import fs from "fs"
+import path from "path"
 
 dotenv.config()
 
 const SCHEMA = JSON.stringify(
   zodToJsonSchema(
-    z.object({
-      description: z.string().describe("Description of the image"),
-    })
+    z
+      .object({
+        artistName: z.string().describe("Artist's name"),
+        education: z.array(
+          z
+            .object({
+              year: z.number().describe("Year of completion"),
+              degree: z.string().describe("Degree attained"),
+              institution: z.string().describe("Name of the institution"),
+              location: z.string().describe("Location of the institution"),
+            })
+            .describe("A list of educational experiences and degrees")
+            .partial()
+        ),
+        exhibitions: z.array(
+          z
+            .object({
+              year: z.number().describe("Year of exhibition"),
+              title: z.string().describe("Title of the exhibition"),
+              exhibitionType: z
+                .enum(["solo", "group", "unknown"])
+                .describe("Type of exhibition (solo or group show)"),
+              venue: z
+                .string()
+                .describe(
+                  "Name of the exhibition venue (gallery, museum, etc)"
+                ),
+              location: z.string().describe("Location of the venue"),
+            })
+            .describe(
+              "A list of exhibitions the artist has participated in, or else an empty array"
+            )
+            .partial()
+        ),
+      })
+      .partial()
   ),
   null,
   2
@@ -20,7 +56,8 @@ const SCHEMA = JSON.stringify(
 async function main() {
   const response = await generateText({
     model: bedrock("us.meta.llama3-2-90b-instruct-v1:0"),
-    maxTokens: 1024,
+    temperature: 0.1,
+    maxTokens: 2048,
     messages: [
       {
         role: "user",
@@ -28,26 +65,42 @@ async function main() {
           {
             type: "text",
             text: dedent`
-            Your task is to describe the image you are provided.
+            Extract all information from the artist CV in the image.
 
-            Your response should be a valid JSON object, conforming to the following schema:
+            Be concise, and return ONLY a valid json object as the output, without any extra markdown or text.
 
-            \`\`\`json
+            Follow the schema below for the json object:
+
             ${SCHEMA}
-            \`\`\`
             `,
           },
           {
             type: "image",
-            image:
-              "https://live.staticflickr.com/3670/11278910216_ff8a1340df_c_d.jpg",
+            image: getImageData("examples/dancy-cv-1-smallerer.jpg"),
           },
+
+          /**
+           * Multiple image inference is not supported yet
+           */
+
+          // {
+          //   type: "image",
+          //   image: getImageData("examples/dancy-cv-2-smallerer.jpg"),
+          // },
+          // {
+          //   type: "image",
+          //   image: getImageData("examples/dancy-cv-3-smallerer.jpg"),
+          // },
         ],
       },
     ],
   })
 
   console.log(response.text)
+
+  const fileName = `output/bedrock-llama-response.json`
+  const fullPath = path.resolve(__dirname, fileName)
+  fs.writeFileSync(fullPath, response.text)
 }
 
 main()
