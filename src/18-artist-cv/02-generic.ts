@@ -8,9 +8,9 @@ import dotenv from "dotenv"
 import { z } from "zod"
 import fs from "fs"
 import path from "path"
-import { flatten } from "lodash"
 import dedent from "dedent"
 import chalk from "chalk"
+import { getImagesContent } from "./image"
 
 dotenv.config()
 
@@ -126,27 +126,6 @@ async function getModelResponse(model: LanguageModelV1) {
   )
 
   return response.object
-}
-
-function getImagesContent(imagePaths: string[]) {
-  const data = imagePaths.map((imgPath: string, i: number) => {
-    const imagePath = path.resolve(__dirname, imgPath)
-    const imageArrayBuffer = fs.readFileSync(imagePath)
-    const imageData = Buffer.from(imageArrayBuffer).toString("base64")
-
-    return [
-      {
-        type: "text",
-        text: `Image ${i + 1}:`,
-      },
-      {
-        type: "image",
-        image: imageData,
-      },
-    ]
-  })
-
-  return flatten(data)
 }
 
 main()
