@@ -10,6 +10,7 @@ import path from "path"
 import Anthropic from "@anthropic-ai/sdk"
 import { flatten } from "lodash"
 import { ContentBlockParam } from "@anthropic-ai/sdk/resources"
+import dedent from "dedent"
 
 dotenv.config()
 
@@ -51,47 +52,96 @@ const anthropic = new Anthropic()
 anthropic.messages
   .create({
     model: "claude-3-5-sonnet-20241022",
+    temperature: 0,
     max_tokens: 1024,
     tools: [
       {
-        name: "record_summary",
-        description: "Record summary of an image using well-structured JSON.",
+        name: "artistCV",
+        description:
+          "Extract an artist's curriculum vitae using well-structured JSON.",
         input_schema: {
           type: "object",
           properties: {
-            key_colors: {
+            artistName: {
+              type: "string",
+              description: "Artist's name",
+            },
+            education: {
               type: "array",
               items: {
                 type: "object",
                 properties: {
-                  r: { type: "number", description: "red value [0.0, 1.0]" },
-                  g: { type: "number", description: "green value [0.0, 1.0]" },
-                  b: { type: "number", description: "blue value [0.0, 1.0]" },
-                  name: {
+                  year: {
+                    type: "integer",
+                    description: "Year of completion",
+                  },
+                  degree: {
                     type: "string",
-                    description:
-                      'Human-readable color name in snake_case, e.g. "olive_green" or "turquoise"',
+                    description: "Degree",
+                  },
+                  institution: {
+                    type: "string",
+                    description: "Name of the institution",
+                  },
+                  location: {
+                    type: "string",
+                    description: "Location of the institution",
                   },
                 },
-                required: ["r", "g", "b", "name"],
               },
-              description: "Key colors in the image. Limit to less then four.",
             },
-            description: {
-              type: "string",
-              description: "Image description. One to two sentences max.",
-            },
-            estimated_year: {
-              type: "integer",
-              description:
-                "Estimated year that the images was taken, if is it a photo. Only set this if the image appears to be non-fictional. Rough estimates are okay!",
+            exhibitions: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  year: {
+                    type: "integer",
+                    description: "Year of exhibition",
+                  },
+                  title: {
+                    type: "string",
+                    description: "Title of the exhibition",
+                  },
+                  exhibitionType: {
+                    type: "string",
+                    enum: ["solo", "group", "unknown"],
+                    description: "Type of exhibition (solo or group show)",
+                  },
+                  venue: {
+                    type: "string",
+                    description:
+                      "Name of the exhibition venue (gallery, museum, etc)",
+                  },
+                  location: {
+                    type: "string",
+                    description: "Location of the venue",
+                  },
+                },
+                required: ["year", "title", "exhibitionType", "venue"],
+              },
             },
           },
-          required: ["key_colors", "description"],
+          required: ["artistName", "exhibitions"],
         },
       },
     ],
-    tool_choice: { type: "tool", name: "record_summary" },
+    tool_choice: { type: "tool", name: "artistCV" },
+    system: dedent`
+      You are a reader of artists' curriculum vitae, or CVs.
+
+      The CV is a document that lists an artist's exhibition history, as well as possibly their education, awards, residencies, publications and other achievements.
+
+      You will be provided with images which constitute such a CV.
+
+      Your task is to extract structured data from this CV using the provided tool and json schema.
+
+      It is important that you extract as much information as possible from the CV. Extract ALL exhibitions, not just a subset.
+
+      A single CV may be broken up into multiple image files. Examine all of them before you produce a response.
+
+      The layout of the CV may include multiple exhibitions for each year heading. Be sure to extract all of them.
+    `,
     messages: [
       {
         role: "user",
@@ -102,4 +152,6 @@ anthropic.messages
       },
     ],
   })
-  .then((response) => console.log(JSON.stringify(response, null, 2)))
+  .then((response) =>
+    console.log(JSON.stringify(response.content[0].input, null, 2))
+  )
