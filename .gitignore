@@ -35,3 +35,6 @@ src/16-art-quiz/data/*
 
 # infinite-discovery json
 src/17-infinite-discovery/data/*
+
+# artist CV
+src/18-artist-cv/output/*

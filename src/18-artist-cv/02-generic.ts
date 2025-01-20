@@ -1,4 +1,4 @@
-import { generateObject, UserContent } from "ai"
+import { generateObject, LanguageModelV1, UserContent } from "ai"
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { openai } from "@ai-sdk/openai"
 import { anthropic } from "@ai-sdk/anthropic"
@@ -8,8 +8,9 @@ import dotenv from "dotenv"
 import { z } from "zod"
 import fs from "fs"
 import path from "path"
-import { flatten, pick } from "lodash"
+import { flatten } from "lodash"
 import dedent from "dedent"
+import chalk from "chalk"
 
 dotenv.config()
 
@@ -28,12 +29,31 @@ const IMAGE_PATHS = [
   // "examples/dancy-cv-3-smaller.jpg", // adding the 3rd image causes fewer tokens in the response 🤔
 ]
 
+const MODELS = [
+  // anthropic("claude-3-opus-20240229"),
+  anthropic("claude-3-5-sonnet-20241022"),
+  openai("gpt-4o-2024-11-20"),
+  // bedrock("us.meta.llama3-2-90b-instruct-v1:0"),
+]
+
 async function main() {
+  console.log(
+    chalk.green(`Starting: ${MODELS.map((m) => m.modelId).join(", ")} …`)
+  )
+  const allOutput = Promise.all(
+    MODELS.map((model) => {
+      getModelResponse(model).then(() => {
+        console.log(chalk.green(`Received: ${model.modelId}`))
+      })
+    })
+  )
+
+  await allOutput
+}
+
+async function getModelResponse(model: LanguageModelV1) {
   const response = await generateObject({
-    // model: anthropic("claude-3-opus-latest"),
-    // model: openai("o1-2024-12-17"),
-    // model: bedrock("meta.llama3-2-90b-instruct-v1:0"),
-    model: bedrock("us.meta.llama3-2-90b-instruct-v1:0"),
+    model,
     temperature: 0,
     maxTokens: 2048,
     schema: z
@@ -96,8 +116,16 @@ async function main() {
   })
 
   console.log(
-    JSON.stringify(pick(response, "object", "usage", "finishReason"), null, 2)
+    JSON.stringify({ model: model.modelId, usage: response.usage }, null, 2)
   )
+
+  const fileName = `output/${model.modelId}-response.json`
+  fs.writeFileSync(
+    path.resolve(__dirname, fileName),
+    JSON.stringify(response.object, null, 2)
+  )
+
+  return response.object
 }
 
 function getImagesContent(imagePaths: string[]) {
