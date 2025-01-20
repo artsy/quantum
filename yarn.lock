@@ -40,10 +40,10 @@
   dependencies:
     json-schema "0.4.0"
 
-"@anthropic-ai/sdk@^0.21.1":
-  version "0.21.1"
-  resolved "https://registry.yarnpkg.com/@anthropic-ai/sdk/-/sdk-0.21.1.tgz#82a2e203323aebdc241a2e2eb27790fe58e95c71"
-  integrity sha512-fqdt74RTdplnaFOYhwNjjK/Ec09Dqv9ekYr7PuC6GdhV1RWkziqbpJBewn42CYYqCr92JeX6g+IXVgXmq9l7XQ==
+"@anthropic-ai/sdk@^0.33.1":
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/@anthropic-ai/sdk/-/sdk-0.33.1.tgz#83be59ad8cbd6634f48155b0aa4b7287cfba1b8a"
+  integrity sha512-VrlbxiAdVRGuKP2UQlCnsShDHJKWepzvfRCkZMpU+oaUdKLpOfmylLMRojGrAgebV+kDtPjewCVP0laHXg+vsA==
   dependencies:
     "@types/node" "^18.11.18"
     "@types/node-fetch" "^2.6.4"
@@ -52,7 +52,6 @@
     form-data-encoder "1.7.2"
     formdata-node "^4.3.2"
     node-fetch "^2.6.7"
-    web-streams-polyfill "^3.2.1"
 
 "@esbuild/aix-ppc64@0.19.12":
   version "0.19.12"
