@@ -14,6 +14,15 @@ import dedent from "dedent"
 
 dotenv.config()
 
+/**
+ * PDF pages exported as jpgs from Preview.app
+ *
+ * Then resized to be no larger than 951x1268
+ * (convert dancy-cv-1.jpg -resize "951x1268" dancy-cv-1-smaller.jpg)
+ *
+ * See: https://docs.anthropic.com/en/docs/build-with-claude/vision#evaluate-image-size
+ *
+ */
 const IMAGE_PATHS = [
   "examples/dancy-cv-1-smaller.jpg",
   "examples/dancy-cv-2-smaller.jpg",
