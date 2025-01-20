@@ -1,57 +1,16 @@
 import { generateText } from "ai"
 import { bedrock } from "@ai-sdk/amazon-bedrock"
 import dotenv from "dotenv"
-import { z } from "zod"
 import { zodToJsonSchema } from "zod-to-json-schema"
 import dedent from "dedent"
 import { getImageData } from "./image"
 import fs from "fs"
 import path from "path"
+import { schema } from "./schema"
 
 dotenv.config()
 
-const SCHEMA = JSON.stringify(
-  zodToJsonSchema(
-    z
-      .object({
-        artistName: z.string().describe("Artist's name"),
-        education: z.array(
-          z
-            .object({
-              year: z.number().describe("Year of completion"),
-              degree: z.string().describe("Degree attained"),
-              institution: z.string().describe("Name of the institution"),
-              location: z.string().describe("Location of the institution"),
-            })
-            .describe("A list of educational experiences and degrees")
-            .partial()
-        ),
-        exhibitions: z.array(
-          z
-            .object({
-              year: z.number().describe("Year of exhibition"),
-              title: z.string().describe("Title of the exhibition"),
-              exhibitionType: z
-                .enum(["solo", "group", "unknown"])
-                .describe("Type of exhibition (solo or group show)"),
-              venue: z
-                .string()
-                .describe(
-                  "Name of the exhibition venue (gallery, museum, etc)"
-                ),
-              location: z.string().describe("Location of the venue"),
-            })
-            .describe(
-              "A list of exhibitions the artist has participated in, or else an empty array"
-            )
-            .partial()
-        ),
-      })
-      .partial()
-  ),
-  null,
-  2
-)
+const SCHEMA = JSON.stringify(zodToJsonSchema(schema), null, 2)
 
 async function main() {
   const response = await generateText({

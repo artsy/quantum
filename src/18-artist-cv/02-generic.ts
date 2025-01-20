@@ -5,12 +5,12 @@ import { anthropic } from "@ai-sdk/anthropic"
 import { bedrock } from "@ai-sdk/amazon-bedrock"
 /* eslint-enable @typescript-eslint/no-unused-vars */
 import dotenv from "dotenv"
-import { z } from "zod"
 import fs from "fs"
 import path from "path"
 import dedent from "dedent"
 import chalk from "chalk"
 import { getImagesContent } from "./image"
+import { schema } from "./schema"
 
 dotenv.config()
 
@@ -56,42 +56,7 @@ async function getModelResponse(model: LanguageModelV1) {
     model,
     temperature: 0,
     maxTokens: 2048,
-    schema: z
-      .object({
-        artistName: z.string().describe("Artist's name"),
-        education: z.array(
-          z
-            .object({
-              year: z.number().describe("Year of completion"),
-              degree: z.string().describe("Degree attained"),
-              institution: z.string().describe("Name of the institution"),
-              location: z.string().describe("Location of the institution"),
-            })
-            .describe("A list of educational experiences and degrees")
-            .partial()
-        ),
-        exhibitions: z.array(
-          z
-            .object({
-              year: z.number().describe("Year of exhibition"),
-              title: z.string().describe("Title of the exhibition"),
-              exhibitionType: z
-                .enum(["solo", "group", "unknown"])
-                .describe("Type of exhibition (solo or group show)"),
-              venue: z
-                .string()
-                .describe(
-                  "Name of the exhibition venue (gallery, museum, etc)"
-                ),
-              location: z.string().describe("Location of the venue"),
-            })
-            .describe(
-              "A list of exhibitions the artist has participated in, or else an empty array"
-            )
-            .partial()
-        ),
-      })
-      .partial(),
+    schema,
     system: dedent`
       You are a reader of artists' curriculum vitae, or CVs.
 
