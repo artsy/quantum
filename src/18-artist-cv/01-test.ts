@@ -8,6 +8,8 @@ import dotenv from "dotenv"
 import fs from "fs"
 import path from "path"
 import Anthropic from "@anthropic-ai/sdk"
+import { flatten } from "lodash"
+import { ContentBlockParam } from "@anthropic-ai/sdk/resources"
 
 dotenv.config()
 
@@ -17,9 +19,32 @@ const IMAGE_PATHS = [
   "examples/dancy-cv-3-smaller.jpg",
 ]
 
-const imagePath = path.resolve(__dirname, IMAGE_PATHS[0])
-const imageArrayBuffer = fs.readFileSync(imagePath)
-const imageData = Buffer.from(imageArrayBuffer).toString("base64")
+function getImagesContent(imagePaths: string[]) {
+  const data = imagePaths.map((imgPath: string, i: number) => {
+    const imagePath = path.resolve(__dirname, imgPath)
+    const imageArrayBuffer = fs.readFileSync(imagePath)
+    const imageData = Buffer.from(imageArrayBuffer).toString("base64")
+
+    return [
+      {
+        type: "text",
+        text: `Image ${i + 1}:`,
+      },
+      {
+        type: "image",
+        source: {
+          type: "base64",
+          media_type: "image/jpeg",
+          data: imageData,
+        },
+      },
+    ]
+  })
+
+  return flatten(data)
+}
+
+const imagesContent = getImagesContent(IMAGE_PATHS)
 
 const anthropic = new Anthropic()
 
@@ -71,18 +96,8 @@ anthropic.messages
       {
         role: "user",
         content: [
-          {
-            type: "image",
-            source: {
-              type: "base64",
-              media_type: "image/jpeg",
-              data: imageData,
-            },
-          },
-          {
-            type: "text",
-            text: "Describe this image",
-          },
+          ...(imagesContent as ContentBlockParam[]),
+          { type: "text", text: "Describe these images" },
         ],
       },
     ],
