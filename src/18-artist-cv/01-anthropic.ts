@@ -1,7 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 /**
  * Use a multimodal model to extract info from artist CV
+ *
+ * This version uses the Anthropic API directly
+ *
+ * yarn tsx src/18-artist-cv/01-anthropic.ts
  */
 
 import dotenv from "dotenv"
@@ -154,5 +156,6 @@ anthropic.messages
     ],
   })
   .then((response) =>
+    // @ts-expect-error input is not defined
     console.log(JSON.stringify(response.content[0].input, null, 2))
   )

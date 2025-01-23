@@ -1,3 +1,11 @@
+/**
+ * Use multimodal models to extract info from artist CV
+ *
+ * This version uses Vercel's AI SDK to swap between vendors
+ *
+ * yarn tsx src/18-artist-cv/02-generic.ts
+ */
+
 import { generateObject, LanguageModelV1, UserContent } from "ai"
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { openai } from "@ai-sdk/openai"
@@ -23,7 +31,7 @@ const IMAGE_PATHS = [
 
 const MODELS = [
   // anthropic("claude-3-opus-20240229"),
-  // anthropic("claude-3-5-sonnet-20241022"),
+  anthropic("claude-3-5-sonnet-20241022"),
   openai("gpt-4o-2024-11-20"),
   // bedrock("us.meta.llama3-2-90b-instruct-v1:0"),
 ]

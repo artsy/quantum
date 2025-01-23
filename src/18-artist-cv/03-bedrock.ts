@@ -1,3 +1,11 @@
+/**
+ * Use a multimodal model to extract info from artist CV
+ *
+ * This version is tailored for Llama running on Bedrock
+ *
+ * yarn tsx src/18-artist-cv/03-bedrock.ts
+ */
+
 import { generateText } from "ai"
 import { bedrock } from "@ai-sdk/amazon-bedrock"
 import dotenv from "dotenv"
