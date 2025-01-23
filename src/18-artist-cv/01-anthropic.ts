@@ -11,22 +11,14 @@ import Anthropic from "@anthropic-ai/sdk"
 import { flatten } from "lodash"
 import { ContentBlockParam } from "@anthropic-ai/sdk/resources"
 import dedent from "dedent"
+import { current } from "./examples"
 
 dotenv.config()
 
-/**
- * PDF pages exported as jpgs from Preview.app
- *
- * Then resized to be no larger than 951x1268
- * (convert dancy-cv-1.jpg -resize "951x1268" dancy-cv-1-smaller.jpg)
- *
- * See: https://docs.anthropic.com/en/docs/build-with-claude/vision#evaluate-image-size
- *
- */
 const IMAGE_PATHS = [
-  "examples/dancy-cv-1-smaller.jpg",
-  "examples/dancy-cv-2-smaller.jpg",
-  "examples/dancy-cv-3-smaller.jpg",
+  current.images.regular[0],
+  // current.images.regular[1],
+  // current.images.regular[2], // adding more images may cause fewer tokens in the response 🤔
 ]
 
 function getImagesContent(imagePaths: string[]) {

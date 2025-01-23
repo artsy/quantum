@@ -7,6 +7,7 @@ import { getImageData } from "./image"
 import fs from "fs"
 import path from "path"
 import { schema } from "./schema"
+import { current } from "./examples"
 
 dotenv.config()
 
@@ -35,7 +36,7 @@ async function main() {
           },
           {
             type: "image",
-            image: getImageData("examples/dancy-cv-1-smallerer.jpg"),
+            image: getImageData(current.images.smaller[0]),
           },
 
           /**
@@ -44,11 +45,11 @@ async function main() {
 
           // {
           //   type: "image",
-          //   image: getImageData("examples/dancy-cv-2-smallerer.jpg"),
+          // image: getImageData(current.images.smaller[1]),
           // },
           // {
           //   type: "image",
-          //   image: getImageData("examples/dancy-cv-3-smallerer.jpg"),
+          // image: getImageData(current.images.smaller[2]),
           // },
         ],
       },

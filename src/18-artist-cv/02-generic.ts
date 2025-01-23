@@ -11,27 +11,19 @@ import dedent from "dedent"
 import chalk from "chalk"
 import { getImagesContent } from "./image"
 import { schema } from "./schema"
+import { current } from "./examples"
 
 dotenv.config()
 
-/**
- * PDF pages exported as jpgs from Preview.app
- *
- * Then resized to be no larger than 951x1268
- * (convert dancy-cv-1.jpg -resize "951x1268" dancy-cv-1-smaller.jpg)
- *
- * See: https://docs.anthropic.com/en/docs/build-with-claude/vision#evaluate-image-size
- *
- */
 const IMAGE_PATHS = [
-  "examples/dancy-cv-1-smaller.jpg",
-  "examples/dancy-cv-2-smaller.jpg",
-  // "examples/dancy-cv-3-smaller.jpg", // adding the 3rd image causes fewer tokens in the response 🤔
+  current.images.regular[0],
+  // current.images.regular[1],
+  // current.images.regular[2], // adding more images may cause fewer tokens in the response 🤔
 ]
 
 const MODELS = [
   // anthropic("claude-3-opus-20240229"),
-  anthropic("claude-3-5-sonnet-20241022"),
+  // anthropic("claude-3-5-sonnet-20241022"),
   openai("gpt-4o-2024-11-20"),
   // bedrock("us.meta.llama3-2-90b-instruct-v1:0"),
 ]
@@ -55,7 +47,7 @@ async function getModelResponse(model: LanguageModelV1) {
   const response = await generateObject({
     model,
     temperature: 0,
-    maxTokens: 2048,
+    maxTokens: 4096,
     schema,
     system: dedent`
       You are a reader of artists' curriculum vitae, or CVs.
