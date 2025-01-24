@@ -1,0 +1,101 @@
+{
+  "artistName": "Carmen Herrera",
+  "education": [
+    {
+      "year": 1943,
+      "degree": "Art Studies",
+      "institution": "Arts Students League",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 1939,
+      "degree": "Architecture",
+      "institution": "Universidad de La Habana",
+      "location": "Havana, CU"
+    },
+    {
+      "year": 1936,
+      "degree": "Painting and Sculpture",
+      "institution": "Lyceum",
+      "location": "Havana, CU"
+    },
+    {
+      "year": 1931,
+      "degree": "Art Studies",
+      "institution": "Marymount College",
+      "location": "Paris, FR"
+    }
+  ],
+  "exhibitions": [
+    {
+      "year": 2021,
+      "title": "Women in Abstraction",
+      "exhibitionType": "group",
+      "venue": "Centre Pompidou",
+      "location": "Paris, FR"
+    },
+    {
+      "year": 2020,
+      "title": "Carmen Herrera in Paris: 1949-1953",
+      "exhibitionType": "solo",
+      "venue": "Dickinson Roundell",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2020,
+      "title": "Carmen Herrera: Structuring Surfaces",
+      "exhibitionType": "solo",
+      "venue": "Museum of Fine Arts Houston",
+      "location": "Houston, TX, US"
+    },
+    {
+      "year": 2020,
+      "title": "Carmen Herrera: Estructuras Monumentales",
+      "exhibitionType": "solo",
+      "venue": "Buffalo Bayou Park",
+      "location": "Houston, TX, US"
+    },
+    {
+      "year": 2020,
+      "title": "Carmen Herrera: Colour Me In",
+      "exhibitionType": "solo",
+      "venue": "The Perimeter",
+      "location": "London, UK"
+    },
+    {
+      "year": 2020,
+      "title": "Carmen Herrera: Painting in Process",
+      "exhibitionType": "solo",
+      "venue": "Lisson Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2019,
+      "title": "Carmen Herrera: Estructuras Monumentales",
+      "exhibitionType": "solo",
+      "venue": "Public Art Fund, City Hall Park",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2018,
+      "title": "Carmen Herrera: Estructuras",
+      "exhibitionType": "solo",
+      "venue": "Lisson Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2017,
+      "title": "Carmen Herrera",
+      "exhibitionType": "solo",
+      "venue": "Lisson Gallery",
+      "location": "London, UK"
+    },
+    {
+      "year": 2016,
+      "title": "Carmen Herrera: Lines of Sight",
+      "exhibitionType": "solo",
+      "venue": "Whitney Museum of American Art",
+      "location": "New York, NY, US"
+    }
+  ]
+}

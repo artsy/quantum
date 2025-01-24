@@ -1,0 +1,110 @@
+{
+  "artistName": "Mira Dancy",
+  "education": [
+    {
+      "year": 2009,
+      "degree": "MFA",
+      "institution": "Columbia University, School of the Arts",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2001,
+      "degree": "BA",
+      "institution": "Bard College",
+      "location": "Annandale-on-Hudson, NY, US"
+    }
+  ],
+  "exhibitions": [
+    {
+      "year": 2017,
+      "title": "Chapter NY",
+      "exhibitionType": "solo",
+      "venue": "Chapter NY",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2016,
+      "title": "Future woman",
+      "exhibitionType": "solo",
+      "venue": "Yuz Foundation",
+      "location": "Shanghai, CN"
+    },
+    {
+      "year": 2016,
+      "title": "BODYWORK",
+      "exhibitionType": "duo",
+      "venue": "Art Basel Hong Kong",
+      "location": "Hong Kong, HK"
+    },
+    {
+      "year": 2015,
+      "title": "Want Position // Red",
+      "exhibitionType": "solo",
+      "venue": "Eric Hussenot",
+      "location": "Paris, FR"
+    },
+    {
+      "year": 2015,
+      "title": "Yes",
+      "exhibitionType": "solo",
+      "venue": "Chapter NY",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2015,
+      "title": "Is She Is She Psychic",
+      "exhibitionType": "solo",
+      "venue": "Night Gallery",
+      "location": "Los Angeles, CA, US"
+    },
+    {
+      "year": 2014,
+      "title": "Bodyrite",
+      "exhibitionType": "duo",
+      "venue": "Asya Geisberg Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2013,
+      "title": "Bodytonic",
+      "exhibitionType": "solo",
+      "venue": "Kansas Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2013,
+      "title": "Mira Dancy & Alice Shaw",
+      "exhibitionType": "duo",
+      "venue": "Artadia Dumbo",
+      "location": "Brooklyn, NY, US"
+    },
+    {
+      "year": 2012,
+      "title": "No Eyes For Irma",
+      "exhibitionType": "solo",
+      "venue": "Night Gallery",
+      "location": "Los Angeles, CA, US"
+    },
+    {
+      "year": 2017,
+      "title": "Mira Dancy, Jane Freilicher, Daniel Heidkamp",
+      "exhibitionType": "group",
+      "venue": "Derek Eller Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2015,
+      "title": "Greater New York",
+      "exhibitionType": "group",
+      "venue": "MoMA PS1",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2009,
+      "title": "Whitney's Biennial",
+      "exhibitionType": "group",
+      "venue": "Cream Projects",
+      "location": "Brooklyn, NY, US"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "artistName": "Mira Dancy",
+  "education": [
+    {
+      "year": 2009,
+      "degree": "MFA",
+      "institution": "Columbia University, School of the Arts",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2001,
+      "degree": "BA",
+      "institution": "Bard College",
+      "location": "Annandale-on-Hudson, NY, US"
+    }
+  ],
+  "exhibitions": [
+    {
+      "year": 2017,
+      "title": "Chapter",
+      "exhibitionType": "solo",
+      "venue": "Chapter",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2016,
+      "title": "Future woman",
+      "exhibitionType": "solo",
+      "venue": "Yuz Foundation",
+      "location": "Shanghai, CN"
+    },
+    {
+      "year": 2016,
+      "title": "BODYWORK",
+      "exhibitionType": "group",
+      "venue": "Night Gallery",
+      "location": "Los Angeles, CA, US"
+    },
+    {
+      "year": 2015,
+      "title": "Want Position // Red",
+      "exhibitionType": "solo",
+      "venue": "Eric Hussenot",
+      "location": "Paris, FR"
+    },
+    {
+      "year": 2014,
+      "title": "Bodyrite",
+      "exhibitionType": "group",
+      "venue": "Asya Geisberg Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2013,
+      "title": "OK WORMHOLE",
+      "exhibitionType": "group",
+      "venue": "Know More Games",
+      "location": "Brooklyn, NY, US"
+    },
+    {
+      "year": 2012,
+      "title": "No Eyes For Irma",
+      "exhibitionType": "group",
+      "venue": "Night Gallery",
+      "location": "Los Angeles, CA, US"
+    }
+  ]
+}

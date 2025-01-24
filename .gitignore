@@ -37,5 +37,5 @@ src/16-art-quiz/data/*
 src/17-infinite-discovery/data/*
 
 # artist CV
-src/18-artist-cv/output/*
+# src/18-artist-cv/output/*
 src/18-artist-cv/results.zip

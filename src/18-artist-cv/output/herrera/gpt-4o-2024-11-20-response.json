@@ -1,0 +1,458 @@
+{
+  "artistName": "Carmen Herrera",
+  "education": [
+    {
+      "year": 1943,
+      "degree": null,
+      "institution": "Arts Students League",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 1939,
+      "degree": null,
+      "institution": "Universidad de La Habana",
+      "location": "Havana, Cuba"
+    },
+    {
+      "year": 1936,
+      "degree": null,
+      "institution": "Lyceum",
+      "location": "Havana, Cuba"
+    },
+    {
+      "year": 1931,
+      "degree": null,
+      "institution": "Marymount College",
+      "location": "Paris, France"
+    }
+  ],
+  "exhibitions": [
+    {
+      "year": 2021,
+      "title": "Women in Abstraction",
+      "exhibitionType": "group",
+      "venue": "Centre Pompidou",
+      "location": "Paris, France"
+    },
+    {
+      "year": 2021,
+      "title": "Another Energy: Power to Continue Challenging",
+      "exhibitionType": "group",
+      "venue": "Mori Art Museum",
+      "location": "Japan"
+    },
+    {
+      "year": 2021,
+      "title": "Spectrum",
+      "exhibitionType": "group",
+      "venue": "Lisson Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2020,
+      "title": "Figures on a Ground: Perspectives on Minimal Art",
+      "exhibitionType": "group",
+      "venue": "Fondation CAB",
+      "location": "Brussels, Belgium"
+    },
+    {
+      "year": 2020,
+      "title": "Spectrum",
+      "exhibitionType": "group",
+      "venue": "Lisson Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2020,
+      "title": "Carmen Herrera: Structuring Surfaces",
+      "exhibitionType": "solo",
+      "venue": "Museum of Fine Arts Houston",
+      "location": "Houston, TX, USA"
+    },
+    {
+      "year": 2020,
+      "title": "Carmen Herrera: Estructuras Monumentales",
+      "exhibitionType": "solo",
+      "venue": "Buffalo Bayou Park",
+      "location": "Houston, TX, USA"
+    },
+    {
+      "year": 2020,
+      "title": "Carmen Herrera: Colour Me In",
+      "exhibitionType": "solo",
+      "venue": "The Perimeter",
+      "location": "London, UK"
+    },
+    {
+      "year": 2020,
+      "title": "Carmen Herrera: Painting in Process",
+      "exhibitionType": "solo",
+      "venue": "Lisson Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2019,
+      "title": "Carmen Herrera: Estructuras Monumentales",
+      "exhibitionType": "solo",
+      "venue": "Public Art Fund, City Hall Park",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2019,
+      "title": "Postwar Women",
+      "exhibitionType": "group",
+      "venue": "Arts Students League",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2019,
+      "title": "Downtown Painting",
+      "exhibitionType": "group",
+      "venue": "Peter Freeman Inc.",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2019,
+      "title": "Spilling Over: Painting Color in the 1960s",
+      "exhibitionType": "group",
+      "venue": "Whitney Museum of American Art",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2018,
+      "title": "Carmen Herrera: Estructuras",
+      "exhibitionType": "solo",
+      "venue": "Lisson Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2018,
+      "title": "Epic Abstraction: Pollock to Herrera",
+      "exhibitionType": "group",
+      "venue": "The Met Breuer",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2018,
+      "title": "Géométries Sud, Du Mexique à la Terre de Feu",
+      "exhibitionType": "group",
+      "venue": "Fondation Cartier pour l’art contemporain",
+      "location": "Paris, France"
+    },
+    {
+      "year": 2018,
+      "title": "QUEENIE: Selected artworks by female artists from El Museo del Barrio’s Collection",
+      "exhibitionType": "group",
+      "venue": "Hunter East Harlem Art Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2018,
+      "title": "Works from the Collection III: The Second Sex",
+      "exhibitionType": "group",
+      "venue": "Another Space",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2018,
+      "title": "Verboamérica",
+      "exhibitionType": "group",
+      "venue": "Museo de Arte Latinoamericano de Buenos Aires",
+      "location": "Buenos Aires, Argentina"
+    },
+    {
+      "year": 2017,
+      "title": "Carmen Herrera",
+      "exhibitionType": "solo",
+      "venue": "Lisson Gallery",
+      "location": "London, UK"
+    },
+    {
+      "year": 2017,
+      "title": "Carmen Herrera: Lines of Sight",
+      "exhibitionType": "solo",
+      "venue": "K20: Kunst Sammlung Nordrhein Westfalen",
+      "location": "Westfalen, Germany"
+    },
+    {
+      "year": 2017,
+      "title": "Carmen Herrera: Lines of Sight",
+      "exhibitionType": "solo",
+      "venue": "Wexner Center for the Arts, the Ohio State University",
+      "location": "Columbus, OH, USA"
+    },
+    {
+      "year": 2017,
+      "title": "Carmen Herrera: Paintings on Paper",
+      "exhibitionType": "solo",
+      "venue": "Lisson Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2017,
+      "title": "Adios Utopia: Dreams and Deception in Cuban Art Since 1950",
+      "exhibitionType": "group",
+      "venue": "Museum of Fine Arts, Houston; Walker Art Center",
+      "location": "Minneapolis, USA"
+    },
+    {
+      "year": 2017,
+      "title": "Artists of Color",
+      "exhibitionType": "group",
+      "venue": "The Underground Museum",
+      "location": "Los Angeles, CA, USA"
+    },
+    {
+      "year": 2017,
+      "title": "Going Public – The Kirkland Collection",
+      "exhibitionType": "group",
+      "venue": "Graves Gallery",
+      "location": "Sheffield, UK"
+    },
+    {
+      "year": 2016,
+      "title": "Carmen Herrera: Lines of Sight",
+      "exhibitionType": "solo",
+      "venue": "Whitney Museum of American Art",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2016,
+      "title": "Carmen Herrera: Recent Works",
+      "exhibitionType": "solo",
+      "venue": "Lisson Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2016,
+      "title": "Postwar – Art between the Pacific and the Atlantic, 1945–1965",
+      "exhibitionType": "group",
+      "venue": "Haus der Kunst",
+      "location": "Munich, Germany"
+    },
+    {
+      "year": 2015,
+      "title": "Our America: The Latino Presence in American Art",
+      "exhibitionType": "group",
+      "venue": "Utah Museum of Fine Arts",
+      "location": "Salt Lake City, UT, USA"
+    },
+    {
+      "year": 2015,
+      "title": "Our America: The Latino Presence in American Art",
+      "exhibitionType": "group",
+      "venue": "Hunter Museum of American Art",
+      "location": "Chattanooga, TN, USA"
+    },
+    {
+      "year": 2014,
+      "title": "Liberated Subjects: Pioneers",
+      "exhibitionType": "group",
+      "venue": "Foundation de 11 Lijnen",
+      "location": "Oudenburg, Belgium"
+    },
+    {
+      "year": 2014,
+      "title": "Our America: The Latino Presence in American Art",
+      "exhibitionType": "group",
+      "venue": "Smithsonian American Art Museum",
+      "location": "Washington, DC, USA"
+    },
+    {
+      "year": 2014,
+      "title": "Order, Chaos, and the Space Between",
+      "exhibitionType": "group",
+      "venue": "Phoenix Art Museum",
+      "location": "Phoenix, AZ, USA"
+    },
+    {
+      "year": 2013,
+      "title": "Works on Paper 2010–2012",
+      "exhibitionType": "solo",
+      "venue": "Lisson Gallery",
+      "location": "Milan, Italy"
+    },
+    {
+      "year": 2012,
+      "title": "Carmen Herrera",
+      "exhibitionType": "solo",
+      "venue": "Lisson Gallery",
+      "location": "London, UK"
+    },
+    {
+      "year": 2012,
+      "title": "The Geometric Unconscious: A Century of Abstraction",
+      "exhibitionType": "group",
+      "venue": "Sheldon Museum of Art",
+      "location": "Lincoln, NE, USA"
+    },
+    {
+      "year": 2010,
+      "title": "Recent Works",
+      "exhibitionType": "solo",
+      "venue": "Frederico Sève Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2010,
+      "title": "Museum Pfalzgalerie Kaiserslautern",
+      "exhibitionType": "group",
+      "venue": "Kaiserslautern",
+      "location": "Germany"
+    },
+    {
+      "year": 2010,
+      "title": "Peter Joseph and Carmen Herrera",
+      "exhibitionType": "group",
+      "venue": "Lisson Gallery",
+      "location": "London, UK"
+    },
+    {
+      "year": 2010,
+      "title": "Then & Now: Abstraction in Latin American Art from 1950 to Present",
+      "exhibitionType": "group",
+      "venue": "Deutsche Bank",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2010,
+      "title": "Negotiations: The Second Today’s Documents",
+      "exhibitionType": "group",
+      "venue": "Today Art Museum",
+      "location": "Beijing, China"
+    },
+    {
+      "year": 2010,
+      "title": "Grass Grows by Itself",
+      "exhibitionType": "group",
+      "venue": "Marlborough Chelsea",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2009,
+      "title": "Carmen Herrera",
+      "exhibitionType": "solo",
+      "venue": "Ikon Gallery",
+      "location": "Birmingham, UK"
+    },
+    {
+      "year": 2009,
+      "title": "The Line Is a Sign",
+      "exhibitionType": "group",
+      "venue": "Frederico Sève Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2007,
+      "title": "Estructuras",
+      "exhibitionType": "solo",
+      "venue": "Frederico Sève Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2007,
+      "title": "Referencing Alexander Calder: A Dialogue in Modern and Contemporary Art",
+      "exhibitionType": "group",
+      "venue": "Eli Klein Fine Art",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2007,
+      "title": "New Perspectives in Latin American Art, 1930 – 2006: Selections from a Decade of Acquisitions",
+      "exhibitionType": "group",
+      "venue": "Museum of Modern Art",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2006,
+      "title": "Abstraction: Presence of Cuban Painters in New York",
+      "exhibitionType": "group",
+      "venue": "Frederico Sève Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2005,
+      "title": "Five Decades of Painting",
+      "exhibitionType": "solo",
+      "venue": "Frederico Sève Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 2005,
+      "title": "The Forms of Silence: Carmen Herrera Abstract Works 1948–1976",
+      "exhibitionType": "solo",
+      "venue": "Miami Art Central",
+      "location": "Miami, FL, USA"
+    },
+    {
+      "year": 2004,
+      "title": "Concrete Realities: The Art of Carmen Herrera, Fanny Sanín and Mira Schendel",
+      "exhibitionType": "group",
+      "venue": "Frederico Sève Gallery",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 1998,
+      "title": "The Black and White Paintings, 1951–1959",
+      "exhibitionType": "solo",
+      "venue": "El Museo del Barrio",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 1988,
+      "title": "Rastovski Gallery",
+      "exhibitionType": "solo",
+      "venue": "New York, NY, USA"
+    },
+    {
+      "year": 1987,
+      "title": "Rastovski Gallery",
+      "exhibitionType": "solo",
+      "venue": "New York, NY, USA"
+    },
+    {
+      "year": 1984,
+      "title": "Carmen Herrera: A Retrospective 1951 – 1984",
+      "exhibitionType": "solo",
+      "venue": "The Alternative Museum",
+      "location": "New York, NY, USA"
+    },
+    {
+      "year": 1979,
+      "title": "Institute of International Education",
+      "exhibitionType": "solo",
+      "venue": "New York, NY, USA"
+    },
+    {
+      "year": 1965,
+      "title": "Cisneros Gallery",
+      "exhibitionType": "solo",
+      "venue": "New York, NY, USA"
+    },
+    {
+      "year": 1963,
+      "title": "Trabia Gallery",
+      "exhibitionType": "solo",
+      "venue": "New York, NY, USA"
+    },
+    {
+      "year": 1956,
+      "title": "Galeria Sudamericana",
+      "exhibitionType": "solo",
+      "venue": "New York, NY, USA"
+    },
+    {
+      "year": 1955,
+      "title": "Eglinton Gallery",
+      "exhibitionType": "solo",
+      "venue": "Toronto, Canada"
+    },
+    {
+      "year": 1950,
+      "title": "Pinturas",
+      "exhibitionType": "solo",
+      "venue": "Lyceum",
+      "location": "Havana, Cuba"
+    }
+  ]
+}

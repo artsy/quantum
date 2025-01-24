@@ -1,0 +1,57 @@
+{
+  "artistName": "Asif Hoque",
+  "education": [
+    {
+      "year": 2014,
+      "degree": "Associate Degree",
+      "institution": "Pratt Institute"
+    },
+    {
+      "degree": "Bachelor of Fine Arts",
+      "institution": "Hunter College"
+    }
+  ],
+  "exhibitions": [
+    {
+      "year": 2020,
+      "title": "A Loverboy’s tale",
+      "exhibitionType": "solo",
+      "venue": "SPRING/BREAK Art Show",
+      "location": "Manhattan, NY"
+    },
+    {
+      "year": 2019,
+      "title": "Plucked From The Womb Like Something Tart",
+      "exhibitionType": "group",
+      "venue": "12 Gates Arts",
+      "location": "Philadelphia, PA"
+    },
+    {
+      "year": 2019,
+      "title": "Almond Eyes & Curved Arms",
+      "exhibitionType": "group",
+      "venue": "Saint Ann’s School",
+      "location": "Brooklyn, NY"
+    },
+    {
+      "year": 2019,
+      "title": "Secret Garden Show",
+      "exhibitionType": "group",
+      "location": "Brooklyn, NY"
+    },
+    {
+      "year": 2019,
+      "title": "LOVERBOY",
+      "exhibitionType": "solo",
+      "venue": "New Image Art gallery",
+      "location": "Los Angeles, CA"
+    },
+    {
+      "year": 2019,
+      "title": "It’s more about us",
+      "exhibitionType": "group",
+      "venue": "Selena’s Mountain",
+      "location": "Brooklyn, NY"
+    }
+  ]
+}

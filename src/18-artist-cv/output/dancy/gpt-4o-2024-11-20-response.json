@@ -1,0 +1,369 @@
+{
+  "artistName": "Mira Dancy",
+  "education": [
+    {
+      "year": 2009,
+      "degree": "MFA",
+      "institution": "Columbia University, School of the Arts",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2001,
+      "degree": "BA",
+      "institution": "Bard College",
+      "location": "Annandale-on-Hudson, NY, US"
+    }
+  ],
+  "exhibitions": [
+    {
+      "year": 2017,
+      "title": "Chapter NY",
+      "exhibitionType": "solo",
+      "venue": "Chapter NY",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2016,
+      "title": "Future woman",
+      "exhibitionType": "solo",
+      "venue": "Yuz Foundation",
+      "location": "Shanghai, CN"
+    },
+    {
+      "year": 2016,
+      "title": "BODYWORK",
+      "exhibitionType": "solo",
+      "venue": "Night Gallery at Art Basel Hong Kong",
+      "location": "Hong Kong, HK"
+    },
+    {
+      "year": 2015,
+      "title": "Want Position // Red",
+      "exhibitionType": "solo",
+      "venue": "Eric Hussenot",
+      "location": "Paris, FR"
+    },
+    {
+      "year": 2015,
+      "title": "Yes",
+      "exhibitionType": "solo",
+      "venue": "Chapter NY",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2015,
+      "title": "Is She Is She Psychic",
+      "exhibitionType": "solo",
+      "venue": "Night Gallery",
+      "location": "Los Angeles, CA, US"
+    },
+    {
+      "year": 2014,
+      "title": "Bodyrite",
+      "exhibitionType": "solo",
+      "venue": "Asya Geisberg Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2014,
+      "title": "OK WORMHOLE",
+      "exhibitionType": "solo",
+      "venue": "Know More Games",
+      "location": "Brooklyn, NY, US"
+    },
+    {
+      "year": 2013,
+      "title": "Bodytonic",
+      "exhibitionType": "solo",
+      "venue": "Kansas Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2012,
+      "title": "No Eyes For Irma",
+      "exhibitionType": "solo",
+      "venue": "Night Gallery",
+      "location": "Los Angeles, CA, US"
+    },
+    {
+      "year": 2013,
+      "title": "Mira Dancy & Alice Shaw",
+      "exhibitionType": "duo",
+      "venue": "Artadia Dumbo",
+      "location": "Brooklyn, NY, US"
+    },
+    {
+      "year": 2017,
+      "title": "Mira Dancy, Jane Freilicher, Daniel Heidkamp",
+      "exhibitionType": "group",
+      "venue": "Derek Eller Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2016,
+      "title": "Human Condition",
+      "exhibitionType": "group",
+      "venue": "Los Angeles",
+      "location": "Los Angeles, CA, US"
+    },
+    {
+      "year": 2016,
+      "title": "Wacking the Piñata, LTD",
+      "exhibitionType": "group",
+      "venue": "Los Angeles",
+      "location": "Los Angeles, CA, US"
+    },
+    {
+      "year": 2016,
+      "title": "RheoGrande",
+      "exhibitionType": "group",
+      "venue": "Anonymous Gallery",
+      "location": "Mexico City, MX"
+    },
+    {
+      "year": 2016,
+      "title": "Surreal",
+      "exhibitionType": "group",
+      "venue": "König Galerie",
+      "location": "Berlin, DE"
+    },
+    {
+      "year": 2016,
+      "title": "Untitled Body Parts",
+      "exhibitionType": "group",
+      "venue": "Simone Subal Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2015,
+      "title": "No Man’s Land",
+      "exhibitionType": "group",
+      "venue": "Rubell Family Collection",
+      "location": "Miami, FL, US"
+    },
+    {
+      "year": 2015,
+      "title": "Unrealism",
+      "exhibitionType": "group",
+      "venue": "Nautilus South Beach",
+      "location": "Miami Beach, FL, US"
+    },
+    {
+      "year": 2015,
+      "title": "Greater New York",
+      "exhibitionType": "group",
+      "venue": "MoMA PS1",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2014,
+      "title": "Let’s Get Figurative",
+      "exhibitionType": "group",
+      "venue": "Nicelle Beauchene",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2014,
+      "title": "F.B.I.",
+      "exhibitionType": "group",
+      "venue": "Artdu Bandini",
+      "location": "Los Angeles, CA, US"
+    },
+    {
+      "year": 2014,
+      "title": "Feed the Meter",
+      "exhibitionType": "group",
+      "venue": "Bernard Ceysson Galerie",
+      "location": "Luxembourg"
+    },
+    {
+      "year": 2014,
+      "title": "Don’t Look Now",
+      "exhibitionType": "group",
+      "venue": "Zach Feuer Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2014,
+      "title": "Rumpus Room",
+      "exhibitionType": "group",
+      "venue": "David Shelton Gallery",
+      "location": "Houston, TX, US"
+    },
+    {
+      "year": 2014,
+      "title": "Hot House",
+      "exhibitionType": "group",
+      "venue": "The Metropolitan Art Center",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2014,
+      "title": "Particular Pictures",
+      "exhibitionType": "group",
+      "venue": "The Suzanne Geiss Company",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2014,
+      "title": "Feeling Human",
+      "exhibitionType": "group",
+      "venue": "Bleecker Street Arts Club",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2013,
+      "title": "PLAZTICH!",
+      "exhibitionType": "group",
+      "venue": "Side Effects Gallery",
+      "location": "Brooklyn, NY, US"
+    },
+    {
+      "year": 2013,
+      "title": "Snail Salon",
+      "exhibitionType": "group",
+      "venue": "Regina Rex",
+      "location": "Brooklyn, NY, US"
+    },
+    {
+      "year": 2013,
+      "title": "Nackt Glaubigen : Be Leaf Me",
+      "exhibitionType": "group",
+      "venue": "Infernoesque",
+      "location": "Berlin, DE"
+    },
+    {
+      "year": 2013,
+      "title": "Mira Dancy, Summer Wheat, Jessica Williams",
+      "exhibitionType": "group",
+      "venue": "Thierry Goldberg Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2013,
+      "title": "Invagination: Write To Life",
+      "exhibitionType": "group",
+      "venue": "Night Gallery",
+      "location": "Los Angeles, CA, US"
+    },
+    {
+      "year": 2013,
+      "title": "Christian Sampson/Mira Dancy/Sasha Braunig",
+      "exhibitionType": "group",
+      "venue": "Bull and Ram",
+      "location": "Brooklyn, NY, US"
+    },
+    {
+      "year": 2013,
+      "title": "Sauna>sauna",
+      "exhibitionType": "group",
+      "venue": "New York",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2012,
+      "title": "It’s a Process: Cassavetes-style Star Search & Comeback Chat Action Episode with Special Guest: Mira Dancy and Debo Eilers",
+      "exhibitionType": "group",
+      "venue": "Primetime",
+      "location": "Brooklyn, NY, US"
+    },
+    {
+      "year": 2012,
+      "title": "Hot German Painting",
+      "exhibitionType": "group",
+      "venue": "Hans Eisler Nail Salon",
+      "location": "Brooklyn, NY, US"
+    },
+    {
+      "year": 2011,
+      "title": "Invagination / A Seagull Presents Woman to Woman",
+      "exhibitionType": "group",
+      "venue": "New York",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2010,
+      "title": "Tidepool: MADAM performance",
+      "exhibitionType": "group",
+      "venue": "Sara Meltzer Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2010,
+      "title": "Collective Show",
+      "exhibitionType": "group",
+      "venue": "Participant Inc",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2010,
+      "title": "Madam presents Accessorx",
+      "exhibitionType": "group",
+      "venue": "Night Gallery",
+      "location": "Los Angeles, CA, US"
+    },
+    {
+      "year": 2010,
+      "title": "CA Das Hemdleint",
+      "exhibitionType": "group",
+      "venue": "Night Gallery at Economy",
+      "location": "Frankfurt, DE"
+    },
+    {
+      "year": 2010,
+      "title": "Acts Are For Actors",
+      "exhibitionType": "group",
+      "venue": "SouthFirst",
+      "location": "Brooklyn, NY, US"
+    },
+    {
+      "year": 2010,
+      "title": "Visionary/Visions are Scary",
+      "exhibitionType": "group",
+      "venue": "French Neon Pop-Up Space",
+      "location": "Brooklyn, NY, US"
+    },
+    {
+      "year": 2010,
+      "title": "Private Life",
+      "exhibitionType": "group",
+      "venue": "Night Gallery",
+      "location": "Los Angeles, CA, US"
+    },
+    {
+      "year": 2010,
+      "title": "NY New Mirrors",
+      "exhibitionType": "group",
+      "venue": "Exit Art",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2009,
+      "title": "ABCyz",
+      "exhibitionType": "group",
+      "venue": "Silvershed Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2009,
+      "title": "Whitney’s Biennial",
+      "exhibitionType": "group",
+      "venue": "Cream Projects",
+      "location": "Brooklyn, NY, US"
+    },
+    {
+      "year": 2009,
+      "title": "Jennifer Sullivan’s It’s a Process: Garage Sale",
+      "exhibitionType": "group",
+      "venue": "Heist Gallery",
+      "location": "New York, NY, US"
+    },
+    {
+      "year": 2009,
+      "title": "WRONG: A Program of Word and Image",
+      "exhibitionType": "group",
+      "venue": "Eighth Veil",
+      "location": "Los Angeles, CA, US"
+    }
+  ]
+}
