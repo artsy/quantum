@@ -1,0 +1,88 @@
+name: Conventional Commit PR Titles
+
+on:
+  workflow_call:
+
+jobs:
+  validate-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR title
+        id: validate-title
+        if: github.event.pull_request.draft == false
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const conventionalCommitFormat = /^(fix|feat|build|chore|ci|docs|style|refactor|perf|test|revert)(?:\(.+\))?!?:.+$/;
+            const titlePasses = pr.title === 'Deploy' || conventionalCommitFormat.test(pr.title);
+
+            if (titlePasses) {
+              console.log("Conventional commit check passed.");
+              return true;
+            } else {
+              console.error("Conventional commit check failed.");
+              return false;
+            }
+
+      - name: Leave comment if check failed
+        uses: actions/github-script@v8
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            if (${{steps.validate-title.outputs.result}} == false) {
+              const pr = context.payload.pull_request;
+              const { owner, repo } = context.repo;
+              const prNumber = pr.number;
+              const allComments = await github.paginate(
+                github.rest.issues.listComments,
+                { owner, repo, issue_number: prNumber, per_page: 100 }
+              );
+              const existing = allComments.find(c =>
+                typeof c.body === 'string' && c.body.includes('<!-- cc-title-bot -->')
+              );
+              if (!existing) {
+                await github.rest.issues.createComment({
+                  owner: owner,
+                  repo: repo,
+                  issue_number: context.payload.pull_request.number,
+                  body: `<!-- cc-title-bot -->
+            Hi there! :wave:
+            We use **Conventional Commit formatting** for PR titles, but your PR title does not appear to follow this.
+            Please update your title to follow [Conventional Commits](https://www.conventionalcommits.org) guidelines.
+                  `
+                });
+              }
+              else {
+                console.log('PR title is invalid but reminder has already been posted; skipping reminder.');
+              }
+            }
+            else {
+              console.log('PR title is valid.');
+            }
+
+      - name: Delete existing comments
+        uses: actions/github-script@v8
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            if (${{steps.validate-title.outputs.result}} == true) {
+              const pr = context.payload.pull_request;
+              const { owner, repo } = context.repo;
+              const prNumber = pr.number;
+
+              const allComments = await github.paginate(
+                github.rest.issues.listComments,
+                { owner, repo, issue_number: prNumber, per_page: 100 }
+              );
+              const existing = allComments.find(c =>
+                typeof c.body === 'string' && c.body.includes('<!-- cc-title-bot -->')
+              );
+
+              if (existing) {
+                await github.rest.issues.deleteComment({
+                  owner, repo, comment_id: existing.id
+                });
+                core.info('Conventional commit check passed, deleted existing comments.');
+              }
+            }
