@@ -1,0 +1,9 @@
+name: Merge on Green
+
+on:
+  check_suite:
+    types: [completed]
+
+jobs:
+  run-add-version-label:
+    uses: artsy/duchamp/.github/workflows/merge-on-green.yml@add-merge-on-green
