@@ -6,4 +6,4 @@ on:
 
 jobs:
   run-add-version-label:
-    uses: artsy/duchamp/.github/workflows/merge-on-green.yml@add-merge-on-green
+    uses: artsy/duchamp/.github/workflows/merge-on-green.yml@main
