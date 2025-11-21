@@ -1,10 +1,7 @@
 name: Merge on Green
 
 on:
-  status:
   check_suite:
-    types: [completed]
-  check_run:
     types: [completed]
 
 jobs:
