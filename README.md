@@ -1,6 +1,6 @@
 # Quantum
 
-Experiments with large language models (LLMs)
+Experiments with large language models (LLMs).
 
 This repo serves as a common home for Typescript-centric but vendor- and
 model-agnostic experiments with LLMs.
