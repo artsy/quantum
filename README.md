@@ -49,8 +49,7 @@ cp .env.example .env
 
 ## Contributing
 
-Add new experiments under [/src](src/). Follow the existing folder naming
-conventions.
+Add new experiments under [/src](src/). Follow the existing folder naming conventions.
 
 No need to compile Typescript source files, just run them directly with `tsx` as
 follows:
